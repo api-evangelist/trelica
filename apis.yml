@@ -1,0 +1,33 @@
+aid: trelica
+name: Trelica
+description: >-
+  Trelica is a SaaS management platform providing application discovery, license optimization, and workflow automation for IT teams.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - SaaS Management
+  - License Management
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/trelica/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: trelica:trelica
+    name: Trelica
+    description: >-
+      Trelica is a SaaS management platform providing application discovery, license optimization, and workflow automation for IT teams.
+    humanURL: https://www.trelica.com
+    tags:
+      - SaaS Management
+    properties:
+      - type: Documentation
+        url: https://www.trelica.com/resources
+common:
+  - type: Website
+    url: https://www.trelica.com
+  - type: Documentation
+    url: https://www.trelica.com/resources
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
