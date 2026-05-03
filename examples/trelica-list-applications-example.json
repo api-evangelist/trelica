@@ -1,0 +1,41 @@
+{
+  "next": "https://app.trelica.com/api/apps/v1?after=eyJpZCI6IjEyMyJ9",
+  "results": [
+    {
+      "id": "app_01H9ABCXYZ",
+      "name": "Slack",
+      "description": "Team messaging and collaboration platform",
+      "category": "Communication",
+      "status": "Managed",
+      "vendorUrl": "https://slack.com",
+      "userCount": 245,
+      "annualCost": 48000,
+      "currency": "USD",
+      "lastModifiedDtm": "2026-04-28T10:15:00Z"
+    },
+    {
+      "id": "app_02J7DEFUVW",
+      "name": "Salesforce",
+      "description": "CRM and sales automation platform",
+      "category": "CRM",
+      "status": "Managed",
+      "vendorUrl": "https://salesforce.com",
+      "userCount": 85,
+      "annualCost": 127500,
+      "currency": "USD",
+      "lastModifiedDtm": "2026-04-25T09:30:00Z"
+    },
+    {
+      "id": "app_03K5GHIRST",
+      "name": "Notion",
+      "description": "Collaborative workspace and documentation tool",
+      "category": "Productivity",
+      "status": "Discovered",
+      "vendorUrl": "https://notion.so",
+      "userCount": 38,
+      "annualCost": 3800,
+      "currency": "USD",
+      "lastModifiedDtm": "2026-04-20T14:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trelica/main/json-schema/trelica-person-schema.json",
+  "title": "Trelica Person",
+  "description": "Schema for a person (employee) in the Trelica platform",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique person identifier"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Full display name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Primary email address"
+    },
+    "department": {
+      "type": "string",
+      "description": "Department or team"
+    },
+    "jobTitle": {
+      "type": "string",
+      "description": "Job title"
+    },
+    "manager": {
+      "type": "string",
+      "description": "Manager's person ID"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the person is currently active"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Employment start date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Employment end date (if applicable)"
+    },
+    "lastModifiedDtm": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp"
+    }
+  },
+  "required": ["id", "displayName", "email"],
+  "additionalProperties": true
+}

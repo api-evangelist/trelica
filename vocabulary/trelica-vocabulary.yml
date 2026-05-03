@@ -1,0 +1,157 @@
+vocabulary:
+  name: Trelica Vocabulary
+  description: >-
+    Domain vocabulary for the Trelica SaaS management platform covering
+    application discovery, license management, contract tracking,
+    and IT workflow automation concepts.
+  version: 1.0.0
+  created: '2026-05-03'
+  modified: '2026-05-03'
+  tags:
+    - Contract Management
+    - IT Management
+    - License Management
+    - SaaS Management
+
+terms:
+  - term: SaaS Management
+    definition: >-
+      The practice of discovering, managing, optimizing, and governing the portfolio
+      of software-as-a-service applications used by an organization.
+    related:
+      - Application Discovery
+      - License Optimization
+      - Shadow IT
+
+  - term: Application Discovery
+    definition: >-
+      The automated process of identifying SaaS applications in use across an
+      organization, including sanctioned and unsanctioned (shadow IT) tools.
+    related:
+      - Shadow IT
+      - SaaS Management
+
+  - term: Shadow IT
+    definition: >-
+      Software applications adopted by employees or teams without formal IT
+      approval, often discovered through single sign-on logs or expense reports.
+    related:
+      - Application Discovery
+
+  - term: License Optimization
+    definition: >-
+      The process of analyzing software usage to identify unused or underutilized
+      licenses that can be removed to reduce costs at contract renewal.
+    related:
+      - License Management
+      - Contract Renewal
+
+  - term: License Management
+    definition: >-
+      Tracking and managing software licenses to ensure compliance with vendor
+      agreements and optimize costs.
+    related:
+      - License Optimization
+      - Contract Management
+
+  - term: Contract Management
+    definition: >-
+      Managing software vendor contracts including tracking renewal dates, costs,
+      terms, and negotiation opportunities.
+    related:
+      - Contract Renewal
+      - License Management
+
+  - term: Contract Renewal
+    definition: >-
+      The process of evaluating and renegotiating a software vendor contract
+      before its expiration date.
+    related:
+      - Contract Management
+
+  - term: Onboarding
+    definition: >-
+      The process of provisioning software access for a new employee,
+      including assigning licenses and configuring identity provider accounts.
+    related:
+      - Offboarding
+      - Workflow
+
+  - term: Offboarding
+    definition: >-
+      The process of revoking software access and reclaiming licenses when an
+      employee leaves the organization.
+    related:
+      - Onboarding
+      - Workflow
+
+  - term: Workflow
+    definition: >-
+      An automated sequence of actions triggered by an event such as onboarding,
+      offboarding, or a contract renewal reminder.
+    related:
+      - Onboarding
+      - Offboarding
+
+  - term: SCIM
+    definition: >-
+      System for Cross-domain Identity Management — a standard protocol for
+      automating user provisioning and deprovisioning between identity providers
+      and SaaS applications.
+    related:
+      - Onboarding
+      - Offboarding
+
+  - term: OAuth 2.0
+    definition: >-
+      The authorization framework used by the Trelica API, supporting both
+      Client Credentials (for integrations) and Authorization Code (for
+      third-party developer apps) flows.
+    related:
+      - Client Credentials
+      - Authorization Code
+
+  - term: Client Credentials
+    definition: >-
+      An OAuth 2.0 flow used by server-to-server integrations where an application
+      authenticates using a client ID and secret to access data on behalf of itself.
+    related:
+      - OAuth 2.0
+
+  - term: Authorization Code
+    definition: >-
+      An OAuth 2.0 flow used by third-party developers to allow their users to
+      grant access to their Trelica data.
+    related:
+      - OAuth 2.0
+
+  - term: Scope
+    definition: >-
+      An OAuth 2.0 permission that controls what data an API token can access.
+      Trelica scopes include Apps.Read, People.Read, Contracts.Read, etc.
+    related:
+      - OAuth 2.0
+
+  - term: Audit Log
+    definition: >-
+      A chronological record of all actions and changes made in the Trelica
+      platform, used for compliance, governance, and security investigations.
+    related:
+      - Governance
+      - Compliance
+
+  - term: Governance
+    definition: >-
+      Policies and processes for managing SaaS usage, ensuring compliance with
+      procurement rules, security standards, and budget controls.
+    related:
+      - Audit Log
+      - Compliance
+
+  - term: Software Asset Management
+    definition: >-
+      The practice of managing and optimizing the purchase, deployment,
+      maintenance, utilization, and disposal of software applications.
+    related:
+      - License Management
+      - Asset

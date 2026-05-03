@@ -1,0 +1,129 @@
+rules:
+  trelica-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    message: "Operation ID '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  trelica-operation-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' should use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ()-]*$"
+
+  trelica-pagination-cursor-pattern:
+    description: List operations should support cursor-based pagination with 'after' parameter
+    message: "List operations should include 'after' pagination cursor parameter"
+    severity: info
+    given: "$.paths[*].get"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            parameters:
+              type: array
+
+  trelica-limit-parameter:
+    description: List operations should include a limit parameter
+    message: "List endpoints should support a 'limit' query parameter"
+    severity: info
+    given: "$.paths[*].get.parameters[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  trelica-security-defined:
+    description: All operations must define security requirements
+    message: "Operation '{{path}}' must define security requirements"
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: security
+      function: defined
+
+  trelica-response-200-defined:
+    description: All GET operations must define a 200 response
+    message: "GET operation must define a 200 success response"
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: defined
+
+  trelica-response-401-defined:
+    description: Operations using OAuth must define a 401 response
+    message: "Authenticated operation should define a 401 Unauthorized response"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: responses.401
+      function: defined
+
+  trelica-tag-defined:
+    description: All operations must have at least one tag
+    message: "Operation must include at least one tag"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: defined
+
+  trelica-path-kebab-case:
+    description: API paths must use kebab-case
+    message: "Path '{{path}}' should use kebab-case segments"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9][a-z0-9-]*(/[a-z0-9][a-z0-9-]*|/\\{[a-zA-Z][a-zA-Z0-9]*\\})*)+$"
+
+  trelica-versioned-paths:
+    description: API paths should include a version segment (v1, v2, etc.)
+    message: "Path '{{path}}' should include a version segment"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/[a-z]+/v[0-9]"
+
+  trelica-scim-users-separate-pagination:
+    description: SCIM endpoints use startIndex/count pagination, not cursor-based
+    message: "SCIM endpoints use startIndex and count parameters"
+    severity: info
+    given: "$.paths['/scim/v2/Users'].get"
+    then:
+      function: defined
+
+  trelica-request-body-post:
+    description: POST operations should define a request body
+    message: "POST operation should include a requestBody"
+    severity: warn
+    given: "$.paths[*].post"
+    then:
+      field: requestBody
+      function: defined
+
+  trelica-since-filter-datetime:
+    description: The 'since' filter parameter should be ISO 8601 date-time format
+    message: "Parameter 'since' should use format: date-time"
+    severity: info
+    given: "$.paths[*][*].parameters[?(@.name=='since')].schema"
+    then:
+      field: format
+      function: enumeration
+      functionOptions:
+        values:
+          - date-time

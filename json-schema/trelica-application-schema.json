@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/trelica/main/json-schema/trelica-application-schema.json",
+  "title": "Trelica Application",
+  "description": "Schema for a SaaS application tracked in the Trelica platform",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the application"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the SaaS application"
+    },
+    "description": {
+      "type": "string",
+      "description": "Application description"
+    },
+    "category": {
+      "type": "string",
+      "description": "Application category",
+      "examples": ["Productivity", "Security", "HR", "Finance", "Communication"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Active", "Inactive", "Discovered", "Managed"],
+      "description": "Current status of the application"
+    },
+    "vendorUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Vendor website URL"
+    },
+    "userCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of active users"
+    },
+    "annualCost": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Annual cost in base currency"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code",
+      "examples": ["USD", "GBP", "EUR"]
+    },
+    "lastModifiedDtm": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp"
+    }
+  },
+  "required": ["id", "name"],
+  "additionalProperties": true
+}

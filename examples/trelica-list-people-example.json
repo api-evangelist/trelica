@@ -1,0 +1,27 @@
+{
+  "next": null,
+  "results": [
+    {
+      "id": "person_01ABCDEF",
+      "displayName": "Jane Smith",
+      "email": "jane.smith@company.com",
+      "department": "Engineering",
+      "jobTitle": "Senior Software Engineer",
+      "manager": "person_00MANAGER",
+      "active": true,
+      "startDate": "2022-03-15",
+      "lastModifiedDtm": "2026-04-01T08:00:00Z"
+    },
+    {
+      "id": "person_02GHIJKL",
+      "displayName": "Bob Johnson",
+      "email": "bob.johnson@company.com",
+      "department": "Marketing",
+      "jobTitle": "Marketing Manager",
+      "manager": "person_00CMOHEAD",
+      "active": true,
+      "startDate": "2021-07-01",
+      "lastModifiedDtm": "2026-03-15T11:30:00Z"
+    }
+  ]
+}
