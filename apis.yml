@@ -81,7 +81,7 @@ common:
     url: json-schema/trelica-contract-schema.json
   - type: JSONStructure
     url: json-structure/trelica-application-structure.json
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/trelica-context.jsonld
   - type: SpectralRules
     url: rules/trelica-spectral-rules.yml
