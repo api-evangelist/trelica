@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trelica REST API — Applications
+  description: 'Trelica REST API — Applications. 2 operations. Lead operation: List Applications. Self-contained Naftiko capability
+    covering one Trelica business surface.'
+  tags:
+  - Trelica
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRELICA_API_KEY: TRELICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-applications
+    baseUri: https://app.trelica.com/api
+    description: Trelica REST API — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: apps-v1
+      path: /apps/v1
+      operations:
+      - name: listapplications
+        method: GET
+        description: List Applications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Free-text search across application name and description
+        - name: since
+          in: query
+          type: string
+          description: Filter applications modified after this date/time (ISO 8601)
+        - name: after
+          in: query
+          type: string
+          description: Pagination cursor for next page of results
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results to return (default 100)
+    - name: apps-v1-appId
+      path: /apps/v1/{appId}
+      operations:
+      - name: getapplication
+        method: GET
+        description: Get Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appId
+          in: path
+          type: string
+          description: Unique identifier for the application
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TRELICA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-applications-rest
+    port: 8080
+    description: REST adapter for Trelica REST API — Applications. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/apps/v1
+      name: apps-v1
+      description: REST surface for apps-v1.
+      operations:
+      - method: GET
+        name: listapplications
+        description: List Applications
+        call: rest-applications.listapplications
+        with:
+          q: rest.q
+          since: rest.since
+          after: rest.after
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apps/v1/{appid}
+      name: apps-v1-appid
+      description: REST surface for apps-v1-appId.
+      operations:
+      - method: GET
+        name: getapplication
+        description: Get Application
+        call: rest-applications.getapplication
+        with:
+          appId: rest.appId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trelica REST API — Applications. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-applications
+      description: List Applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-applications.listapplications
+      with:
+        q: tools.q
+        since: tools.since
+        after: tools.after
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-application
+      description: Get Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-applications.getapplication
+      with:
+        appId: tools.appId
+      outputParameters:
+      - type: object
+        mapping: $.

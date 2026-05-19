@@ -1,0 +1,97 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trelica REST API — Assets
+  description: 'Trelica REST API — Assets. 1 operations. Lead operation: List Assets. Self-contained Naftiko capability covering
+    one Trelica business surface.'
+  tags:
+  - Trelica
+  - Assets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRELICA_API_KEY: TRELICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-assets
+    baseUri: https://app.trelica.com/api
+    description: Trelica REST API — Assets business capability. Self-contained, no shared references.
+    resources:
+    - name: assets-v1
+      path: /assets/v1
+      operations:
+      - name: listassets
+        method: GET
+        description: List Assets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Free-text search across asset names
+        - name: since
+          in: query
+          type: string
+          description: Filter assets modified after this date/time
+        - name: after
+          in: query
+          type: string
+          description: Pagination cursor
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (default 100)
+    authentication:
+      type: bearer
+      token: '{{env.TRELICA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-assets-rest
+    port: 8080
+    description: REST adapter for Trelica REST API — Assets. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/assets/v1
+      name: assets-v1
+      description: REST surface for assets-v1.
+      operations:
+      - method: GET
+        name: listassets
+        description: List Assets
+        call: rest-assets.listassets
+        with:
+          q: rest.q
+          since: rest.since
+          after: rest.after
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-assets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trelica REST API — Assets. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-assets
+      description: List Assets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-assets.listassets
+      with:
+        q: tools.q
+        since: tools.since
+        after: tools.after
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

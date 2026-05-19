@@ -1,0 +1,110 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trelica REST API — Application Users
+  description: 'Trelica REST API — Application Users. 1 operations. Lead operation: List Application Users. Self-contained
+    Naftiko capability covering one Trelica business surface.'
+  tags:
+  - Trelica
+  - Application Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRELICA_API_KEY: TRELICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-application-users
+    baseUri: https://app.trelica.com/api
+    description: Trelica REST API — Application Users business capability. Self-contained, no shared references.
+    resources:
+    - name: apps-v1-appId-users
+      path: /apps/v1/{appId}/users
+      operations:
+      - name: listapplicationusers
+        method: GET
+        description: List Application Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appId
+          in: path
+          type: string
+          description: Unique identifier for the application
+          required: true
+        - name: q
+          in: query
+          type: string
+          description: Free-text search across user ID, email, and name
+        - name: since
+          in: query
+          type: string
+          description: Filter users modified after this date/time
+        - name: after
+          in: query
+          type: string
+          description: Pagination cursor for next page of results
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results to return (default 100)
+        - name: filter
+          in: query
+          type: string
+          description: SCIM-style filter expression
+    authentication:
+      type: bearer
+      token: '{{env.TRELICA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-application-users-rest
+    port: 8080
+    description: REST adapter for Trelica REST API — Application Users. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/apps/v1/{appid}/users
+      name: apps-v1-appid-users
+      description: REST surface for apps-v1-appId-users.
+      operations:
+      - method: GET
+        name: listapplicationusers
+        description: List Application Users
+        call: rest-application-users.listapplicationusers
+        with:
+          appId: rest.appId
+          q: rest.q
+          since: rest.since
+          after: rest.after
+          limit: rest.limit
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-application-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trelica REST API — Application Users. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-application-users
+      description: List Application Users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-application-users.listapplicationusers
+      with:
+        appId: tools.appId
+        q: tools.q
+        since: tools.since
+        after: tools.after
+        limit: tools.limit
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.

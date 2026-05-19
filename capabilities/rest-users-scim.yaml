@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trelica REST API — Users (SCIM)
+  description: 'Trelica REST API — Users (SCIM). 1 operations. Lead operation: List Users (SCIM). Self-contained Naftiko capability
+    covering one Trelica business surface.'
+  tags:
+  - Trelica
+  - Users (SCIM)
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRELICA_API_KEY: TRELICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-users-scim
+    baseUri: https://app.trelica.com/api
+    description: Trelica REST API — Users (SCIM) business capability. Self-contained, no shared references.
+    resources:
+    - name: scim-v2-Users
+      path: /scim/v2/Users
+      operations:
+      - name: listscimusers
+        method: GET
+        description: List Users (SCIM)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startIndex
+          in: query
+          type: integer
+          description: 1-based start index for results (default 1)
+        - name: count
+          in: query
+          type: integer
+          description: Maximum number of results (default 100)
+        - name: filter
+          in: query
+          type: string
+          description: SCIM-style filter expression
+    authentication:
+      type: bearer
+      token: '{{env.TRELICA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-users-scim-rest
+    port: 8080
+    description: REST adapter for Trelica REST API — Users (SCIM). One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/scim/v2/users
+      name: scim-v2-users
+      description: REST surface for scim-v2-Users.
+      operations:
+      - method: GET
+        name: listscimusers
+        description: List Users (SCIM)
+        call: rest-users-scim.listscimusers
+        with:
+          startIndex: rest.startIndex
+          count: rest.count
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-users-scim-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trelica REST API — Users (SCIM). One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-users-scim
+      description: List Users (SCIM)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-users-scim.listscimusers
+      with:
+        startIndex: tools.startIndex
+        count: tools.count
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.

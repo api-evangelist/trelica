@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trelica REST API — Workflows
+  description: 'Trelica REST API — Workflows. 1 operations. Lead operation: List Workflows. Self-contained Naftiko capability
+    covering one Trelica business surface.'
+  tags:
+  - Trelica
+  - Workflows
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRELICA_API_KEY: TRELICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-workflows
+    baseUri: https://app.trelica.com/api
+    description: Trelica REST API — Workflows business capability. Self-contained, no shared references.
+    resources:
+    - name: workflows-v1
+      path: /workflows/v1
+      operations:
+      - name: listworkflows
+        method: GET
+        description: List Workflows
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Free-text search across workflow names
+        - name: after
+          in: query
+          type: string
+          description: Pagination cursor
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (default 100)
+    authentication:
+      type: bearer
+      token: '{{env.TRELICA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-workflows-rest
+    port: 8080
+    description: REST adapter for Trelica REST API — Workflows. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/workflows/v1
+      name: workflows-v1
+      description: REST surface for workflows-v1.
+      operations:
+      - method: GET
+        name: listworkflows
+        description: List Workflows
+        call: rest-workflows.listworkflows
+        with:
+          q: rest.q
+          after: rest.after
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-workflows-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trelica REST API — Workflows. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-workflows
+      description: List Workflows
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workflows.listworkflows
+      with:
+        q: tools.q
+        after: tools.after
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trelica REST API — Contracts
+  description: 'Trelica REST API — Contracts. 2 operations. Lead operation: List Contracts. Self-contained Naftiko capability
+    covering one Trelica business surface.'
+  tags:
+  - Trelica
+  - Contracts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRELICA_API_KEY: TRELICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-contracts
+    baseUri: https://app.trelica.com/api
+    description: Trelica REST API — Contracts business capability. Self-contained, no shared references.
+    resources:
+    - name: contracts-v1
+      path: /contracts/v1
+      operations:
+      - name: listcontracts
+        method: GET
+        description: List Contracts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Free-text search across contract name and vendor
+        - name: since
+          in: query
+          type: string
+          description: Filter contracts modified after this date/time
+        - name: after
+          in: query
+          type: string
+          description: Pagination cursor
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (default 100)
+    - name: contracts-v1-contractId
+      path: /contracts/v1/{contractId}
+      operations:
+      - name: getcontract
+        method: GET
+        description: Get Contract
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contractId
+          in: path
+          type: string
+          description: Unique identifier for the contract
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TRELICA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-contracts-rest
+    port: 8080
+    description: REST adapter for Trelica REST API — Contracts. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/contracts/v1
+      name: contracts-v1
+      description: REST surface for contracts-v1.
+      operations:
+      - method: GET
+        name: listcontracts
+        description: List Contracts
+        call: rest-contracts.listcontracts
+        with:
+          q: rest.q
+          since: rest.since
+          after: rest.after
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/contracts/v1/{contractid}
+      name: contracts-v1-contractid
+      description: REST surface for contracts-v1-contractId.
+      operations:
+      - method: GET
+        name: getcontract
+        description: Get Contract
+        call: rest-contracts.getcontract
+        with:
+          contractId: rest.contractId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-contracts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trelica REST API — Contracts. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-contracts
+      description: List Contracts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-contracts.listcontracts
+      with:
+        q: tools.q
+        since: tools.since
+        after: tools.after
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-contract
+      description: Get Contract
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-contracts.getcontract
+      with:
+        contractId: tools.contractId
+      outputParameters:
+      - type: object
+        mapping: $.

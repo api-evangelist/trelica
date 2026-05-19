@@ -1,0 +1,221 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trelica REST API — People
+  description: 'Trelica REST API — People. 4 operations. Lead operation: List People. Self-contained Naftiko capability covering
+    one Trelica business surface.'
+  tags:
+  - Trelica
+  - People
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRELICA_API_KEY: TRELICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-people
+    baseUri: https://app.trelica.com/api
+    description: Trelica REST API — People business capability. Self-contained, no shared references.
+    resources:
+    - name: people-v1
+      path: /people/v1
+      operations:
+      - name: listpeople
+        method: GET
+        description: List People
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Free-text search across name and email
+        - name: since
+          in: query
+          type: string
+          description: Filter people modified after this date/time
+        - name: after
+          in: query
+          type: string
+          description: Pagination cursor
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results (default 100)
+        - name: filter
+          in: query
+          type: string
+          description: SCIM-style filter expression
+      - name: createperson
+        method: POST
+        description: Create Person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: people-v1-personId
+      path: /people/v1/{personId}
+      operations:
+      - name: getperson
+        method: GET
+        description: Get Person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: personId
+          in: path
+          type: string
+          description: Unique identifier for the person
+          required: true
+      - name: updateperson
+        method: PATCH
+        description: Update Person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: personId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TRELICA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-people-rest
+    port: 8080
+    description: REST adapter for Trelica REST API — People. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/people/v1
+      name: people-v1
+      description: REST surface for people-v1.
+      operations:
+      - method: GET
+        name: listpeople
+        description: List People
+        call: rest-people.listpeople
+        with:
+          q: rest.q
+          since: rest.since
+          after: rest.after
+          limit: rest.limit
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createperson
+        description: Create Person
+        call: rest-people.createperson
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/people/v1/{personid}
+      name: people-v1-personid
+      description: REST surface for people-v1-personId.
+      operations:
+      - method: GET
+        name: getperson
+        description: Get Person
+        call: rest-people.getperson
+        with:
+          personId: rest.personId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateperson
+        description: Update Person
+        call: rest-people.updateperson
+        with:
+          personId: rest.personId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-people-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trelica REST API — People. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-people
+      description: List People
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-people.listpeople
+      with:
+        q: tools.q
+        since: tools.since
+        after: tools.after
+        limit: tools.limit
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-person
+      description: Create Person
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-people.createperson
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-person
+      description: Get Person
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-people.getperson
+      with:
+        personId: tools.personId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-person
+      description: Update Person
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-people.updateperson
+      with:
+        personId: tools.personId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
