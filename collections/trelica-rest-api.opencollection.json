@@ -1,0 +1,592 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trelica REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://app.trelica.com/connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/apps/v1",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search across application name and description"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Filter applications modified after this date/time (ISO 8601)"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor for next page of results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (default 100)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a paginated list of SaaS applications tracked in Trelica."
+        },
+        {
+          "info": {
+            "name": "Get Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/apps/v1/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the application"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns details for a specific application by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Application Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/apps/v1/:appId/users",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the application"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search across user ID, email, and name"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Filter users modified after this date/time"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor for next page of results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (default 100)"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM-style filter expression"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a paginated list of users associated with a specific application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "People",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List People",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/people/v1",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search across name and email"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Filter people modified after this date/time"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (default 100)"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM-style filter expression"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a paginated list of people (employees) in the organization."
+        },
+        {
+          "info": {
+            "name": "Create Person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.trelica.com/api/people/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new person record in Trelica."
+        },
+        {
+          "info": {
+            "name": "Get Person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/people/v1/:personId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the person"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns details for a specific person by their ID."
+        },
+        {
+          "info": {
+            "name": "Update Person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.trelica.com/api/people/v1/:personId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates specific fields on a person record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contracts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/contracts/v1",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search across contract name and vendor"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Filter contracts modified after this date/time"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (default 100)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a paginated list of software contracts managed in Trelica."
+        },
+        {
+          "info": {
+            "name": "Get Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/contracts/v1/:contractId",
+            "params": [
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the contract"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns details for a specific contract by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/workflows/v1",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search across workflow names"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (default 100)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a paginated list of automation workflows configured in Trelica."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/assets/v1",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search across asset names"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets modified after this date/time"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (default 100)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a paginated list of software and hardware assets tracked in Trelica."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audit Log",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Audit Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/audit/v1",
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return entries after this date/time"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (default 100)"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a paginated list of audit log entries for all changes and events in Trelica."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users (SCIM)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Users (SCIM)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.trelica.com/api/scim/v2/Users",
+            "params": [
+              {
+                "name": "startIndex",
+                "value": "",
+                "type": "query",
+                "description": "1-based start index for results (default 1)"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results (default 100)"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "SCIM-style filter expression"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "https://app.trelica.com/connect/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of users using the SCIM 2.0 protocol. Note that SCIM endpoints use a different pagination scheme from other Trelica endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
