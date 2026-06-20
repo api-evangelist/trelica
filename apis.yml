@@ -6,7 +6,7 @@ description: >-
   applications, users, people, contracts, workflows, assets, and audit logs with OAuth 2.0 authentication using Client
   Credentials and Authorization Code flows.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Contract Management
   - IT Management
