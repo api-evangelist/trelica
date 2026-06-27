@@ -64,11 +64,11 @@ common:
     url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
   - type: GitHubOrganization
     url: https://github.com/trelica
-  - type: SDK
+  - type: SDKs
     url: https://github.com/trelica/trelica-api-sdk
-  - type: SDK
+  - type: SDKs
     url: https://github.com/trelica/node
-  - type: SDK
+  - type: SDKs
     url: https://github.com/trelica/powershell
   - type: JSONSchema
     url: json-schema/trelica-application-schema.json
