@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/trelica-rest-api-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: OAuth2ClientCredentials
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://app.trelica.com/connect/token
+    scopes: 9
+  description: OAuth 2.0 Client Credentials flow for server-to-server integrations
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
+- name: OAuth2AuthorizationCode
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://app.trelica.com/connect/authorize
+    tokenUrl: https://app.trelica.com/connect/token
+    scopes: 9
+  description: OAuth 2.0 Authorization Code flow for third-party developer apps
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
