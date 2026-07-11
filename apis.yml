@@ -52,6 +52,10 @@ apis:
       - type: GitHubRepository
         url: https://github.com/trelica/node
 common:
+  - type: Authentication
+    url: authentication/trelica-authentication.yml
+  - type: OAuthScopes
+    url: scopes/trelica-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/trelica
   - type: Website

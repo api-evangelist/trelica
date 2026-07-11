@@ -1,0 +1,81 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/trelica-rest-api-openapi.yml
+schemes:
+- name: OAuth2ClientCredentials
+  source: openapi/trelica-rest-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://app.trelica.com/connect/token
+  description: OAuth 2.0 Client Credentials flow for server-to-server integrations
+- name: OAuth2AuthorizationCode
+  source: openapi/trelica-rest-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://app.trelica.com/connect/authorize
+    tokenUrl: https://app.trelica.com/connect/token
+  description: OAuth 2.0 Authorization Code flow for third-party developer apps
+scopes:
+- scope: Apps.Read
+  description: Read application data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
+- scope: Apps.Users.Read
+  description: Read application user data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
+- scope: Assets.Read
+  description: Read asset data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
+- scope: AuditLog.Read
+  description: Read audit log entries
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
+- scope: Contracts.Read
+  description: Read contract data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
+- scope: People.Read
+  description: Read people data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
+- scope: People.Write
+  description: Create and update people records
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
+- scope: Users.Read
+  description: Read users via SCIM
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
+- scope: Workflows.Read
+  description: Read workflow data
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/trelica-rest-api-openapi.yml
