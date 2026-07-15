@@ -52,6 +52,8 @@ apis:
       - type: GitHubRepository
         url: https://github.com/trelica/node
 common:
+  - type: AgenticAccess
+    url: agentic-access/trelica-agentic-access.yml
   - type: DomainSecurity
     url: security/trelica-domain-security.yml
   - type: Authentication

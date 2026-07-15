@@ -1,0 +1,184 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/trelica-rest-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 13
+  by_action_class:
+    connected: 11
+    acting: 2
+  by_consequence:
+    read: 11
+    write: 2
+  human_in_the_loop_required: 0
+operations:
+- path: /apps/v1
+  method: get
+  operationId: listApplications
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Apps.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apps/v1/{appId}
+  method: get
+  operationId: getApplication
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Apps.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /apps/v1/{appId}/users
+  method: get
+  operationId: listApplicationUsers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Apps.Users.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /people/v1
+  method: get
+  operationId: listPeople
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - People.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /people/v1
+  method: post
+  operationId: createPerson
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - People.Write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /people/v1/{personId}
+  method: get
+  operationId: getPerson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - People.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /people/v1/{personId}
+  method: patch
+  operationId: updatePerson
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - People.Write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /contracts/v1
+  method: get
+  operationId: listContracts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Contracts.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /contracts/v1/{contractId}
+  method: get
+  operationId: getContract
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Contracts.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workflows/v1
+  method: get
+  operationId: listWorkflows
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Workflows.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /assets/v1
+  method: get
+  operationId: listAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Assets.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /audit/v1
+  method: get
+  operationId: listAuditLogs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - AuditLog.Read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /scim/v2/Users
+  method: get
+  operationId: listScimUsers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Users.Read
+    token:
+      max-ttl: 3600
+    audit: none
