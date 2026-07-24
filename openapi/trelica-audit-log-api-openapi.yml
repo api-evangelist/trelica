@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Trelica REST Application Users Audit Log API
+  description: The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.
+  version: 1.0.0
+  contact:
+    name: Trelica Support
+    url: https://help.trelica.com/hc/en-us
+  license:
+    name: Proprietary
+  termsOfService: https://www.trelica.com/terms
+servers:
+- url: https://app.trelica.com/api
+  description: Production (US)
+- url: https://eu.trelica.com/api
+  description: Production (EU)
+security:
+- OAuth2ClientCredentials: []
+- OAuth2AuthorizationCode: []
+tags:
+- name: Audit Log
+  description: Access audit trail of changes and events
+paths:
+  /audit/v1:
+    get:
+      operationId: listAuditLogs
+      summary: List Audit Logs
+      description: Returns a paginated list of audit log entries for all changes and events in Trelica.
+      tags:
+      - Audit Log
+      parameters:
+      - name: since
+        in: query
+        description: Return entries after this date/time
+        schema:
+          type: string
+          format: date-time
+      - name: after
+        in: query
+        description: Pagination cursor
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of results (default 100)
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: List of audit log entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  next:
+                    type: string
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuditEntry'
+        '401':
+          description: Unauthorized
+      security:
+      - OAuth2ClientCredentials:
+        - AuditLog.Read
+components:
+  schemas:
+    AuditEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique audit entry identifier
+        timestamp:
+          type: string
+          format: date-time
+          description: When the event occurred
+        actorId:
+          type: string
+          description: ID of the user who performed the action
+        actorName:
+          type: string
+          description: Name of the user who performed the action
+        action:
+          type: string
+          description: The action that was performed
+        resourceType:
+          type: string
+          description: Type of resource affected (Application, Person, Contract, etc.)
+        resourceId:
+          type: string
+          description: ID of the affected resource
+        changes:
+          type: object
+          description: Details of what changed
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth 2.0 Client Credentials flow for server-to-server integrations
+      flows:
+        clientCredentials:
+          tokenUrl: https://app.trelica.com/connect/token
+          scopes:
+            Apps.Read: Read application data
+            Apps.Users.Read: Read application user data
+            People.Read: Read people data
+            People.Write: Create and update people records
+            Contracts.Read: Read contract data
+            Workflows.Read: Read workflow data
+            Assets.Read: Read asset data
+            AuditLog.Read: Read audit log entries
+            Users.Read: Read users via SCIM
+    OAuth2AuthorizationCode:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow for third-party developer apps
+      flows:
+        authorizationCode:
+          authorizationUrl: https://app.trelica.com/connect/authorize
+          tokenUrl: https://app.trelica.com/connect/token
+          scopes:
+            Apps.Read: Read application data
+            Apps.Users.Read: Read application user data
+            People.Read: Read people data
+            People.Write: Create and update people records
+            Contracts.Read: Read contract data
+            Workflows.Read: Read workflow data
+            Assets.Read: Read asset data
+            AuditLog.Read: Read audit log entries
+            Users.Read: Read users via SCIM

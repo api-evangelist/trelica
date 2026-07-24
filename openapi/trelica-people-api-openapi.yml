@@ -1,0 +1,253 @@
+openapi: 3.1.0
+info:
+  title: Trelica REST Application Users People API
+  description: The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.
+  version: 1.0.0
+  contact:
+    name: Trelica Support
+    url: https://help.trelica.com/hc/en-us
+  license:
+    name: Proprietary
+  termsOfService: https://www.trelica.com/terms
+servers:
+- url: https://app.trelica.com/api
+  description: Production (US)
+- url: https://eu.trelica.com/api
+  description: Production (EU)
+security:
+- OAuth2ClientCredentials: []
+- OAuth2AuthorizationCode: []
+tags:
+- name: People
+  description: Manage people/employees within the organization
+paths:
+  /people/v1:
+    get:
+      operationId: listPeople
+      summary: List People
+      description: Returns a paginated list of people (employees) in the organization.
+      tags:
+      - People
+      parameters:
+      - name: q
+        in: query
+        description: Free-text search across name and email
+        schema:
+          type: string
+      - name: since
+        in: query
+        description: Filter people modified after this date/time
+        schema:
+          type: string
+          format: date-time
+      - name: after
+        in: query
+        description: Pagination cursor
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of results (default 100)
+        schema:
+          type: integer
+          default: 100
+      - name: filter
+        in: query
+        description: SCIM-style filter expression
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of people
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  next:
+                    type: string
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Person'
+        '401':
+          description: Unauthorized
+      security:
+      - OAuth2ClientCredentials:
+        - People.Read
+    post:
+      operationId: createPerson
+      summary: Create Person
+      description: Creates a new person record in Trelica.
+      tags:
+      - People
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonInput'
+      responses:
+        '201':
+          description: Person created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: Invalid request body
+        '401':
+          description: Unauthorized
+      security:
+      - OAuth2ClientCredentials:
+        - People.Write
+  /people/v1/{personId}:
+    get:
+      operationId: getPerson
+      summary: Get Person
+      description: Returns details for a specific person by their ID.
+      tags:
+      - People
+      parameters:
+      - name: personId
+        in: path
+        required: true
+        description: Unique identifier for the person
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Person details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: Person not found
+      security:
+      - OAuth2ClientCredentials:
+        - People.Read
+    patch:
+      operationId: updatePerson
+      summary: Update Person
+      description: Updates specific fields on a person record.
+      tags:
+      - People
+      parameters:
+      - name: personId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonInput'
+      responses:
+        '200':
+          description: Person updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: Invalid request body
+        '404':
+          description: Person not found
+      security:
+      - OAuth2ClientCredentials:
+        - People.Write
+components:
+  schemas:
+    PersonInput:
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: Full display name
+        email:
+          type: string
+          format: email
+          description: Primary email address
+        department:
+          type: string
+          description: Department or team
+        jobTitle:
+          type: string
+          description: Job title
+        active:
+          type: boolean
+          description: Whether the person is active
+    Person:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the person
+        displayName:
+          type: string
+          description: Full display name
+        email:
+          type: string
+          format: email
+          description: Primary email address
+        department:
+          type: string
+          description: Department or team
+        jobTitle:
+          type: string
+          description: Job title
+        manager:
+          type: string
+          description: Manager's person ID
+        active:
+          type: boolean
+          description: Whether the person is currently active
+        startDate:
+          type: string
+          format: date
+          description: Employment start date
+        endDate:
+          type: string
+          format: date
+          description: Employment end date (if applicable)
+        lastModifiedDtm:
+          type: string
+          format: date-time
+          description: Last modification timestamp
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth 2.0 Client Credentials flow for server-to-server integrations
+      flows:
+        clientCredentials:
+          tokenUrl: https://app.trelica.com/connect/token
+          scopes:
+            Apps.Read: Read application data
+            Apps.Users.Read: Read application user data
+            People.Read: Read people data
+            People.Write: Create and update people records
+            Contracts.Read: Read contract data
+            Workflows.Read: Read workflow data
+            Assets.Read: Read asset data
+            AuditLog.Read: Read audit log entries
+            Users.Read: Read users via SCIM
+    OAuth2AuthorizationCode:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow for third-party developer apps
+      flows:
+        authorizationCode:
+          authorizationUrl: https://app.trelica.com/connect/authorize
+          tokenUrl: https://app.trelica.com/connect/token
+          scopes:
+            Apps.Read: Read application data
+            Apps.Users.Read: Read application user data
+            People.Read: Read people data
+            People.Write: Create and update people records
+            Contracts.Read: Read contract data
+            Workflows.Read: Read workflow data
+            Assets.Read: Read asset data
+            AuditLog.Read: Read audit log entries
+            Users.Read: Read users via SCIM

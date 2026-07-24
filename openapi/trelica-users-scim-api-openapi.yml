@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: Trelica REST Application Users Users (SCIM) API
+  description: The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.
+  version: 1.0.0
+  contact:
+    name: Trelica Support
+    url: https://help.trelica.com/hc/en-us
+  license:
+    name: Proprietary
+  termsOfService: https://www.trelica.com/terms
+servers:
+- url: https://app.trelica.com/api
+  description: Production (US)
+- url: https://eu.trelica.com/api
+  description: Production (EU)
+security:
+- OAuth2ClientCredentials: []
+- OAuth2AuthorizationCode: []
+tags:
+- name: Users (SCIM)
+  description: User provisioning via SCIM 2.0 protocol
+paths:
+  /scim/v2/Users:
+    get:
+      operationId: listScimUsers
+      summary: List Users (SCIM)
+      description: Returns a list of users using the SCIM 2.0 protocol. Note that SCIM endpoints use a different pagination scheme from other Trelica endpoints.
+      tags:
+      - Users (SCIM)
+      parameters:
+      - name: startIndex
+        in: query
+        description: 1-based start index for results (default 1)
+        schema:
+          type: integer
+          default: 1
+      - name: count
+        in: query
+        description: Maximum number of results (default 100)
+        schema:
+          type: integer
+          default: 100
+      - name: filter
+        in: query
+        description: SCIM-style filter expression
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SCIM list response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimListResponse'
+        '401':
+          description: Unauthorized
+      security:
+      - OAuth2ClientCredentials:
+        - Users.Read
+components:
+  schemas:
+    ScimUser:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique SCIM user identifier
+        userName:
+          type: string
+          description: Username (usually email)
+        displayName:
+          type: string
+          description: Full display name
+        active:
+          type: boolean
+          description: Whether the user is active
+        emails:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              primary:
+                type: boolean
+        phoneNumbers:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+        meta:
+          type: object
+          properties:
+            lastModified:
+              type: string
+              format: date-time
+            created:
+              type: string
+              format: date-time
+    ScimListResponse:
+      type: object
+      properties:
+        schemas:
+          type: array
+          items:
+            type: string
+        totalResults:
+          type: integer
+          description: Total number of matching users
+        itemsPerPage:
+          type: integer
+          description: Number of items in this response
+        startIndex:
+          type: integer
+          description: 1-based index of first result
+        Resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScimUser'
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      description: OAuth 2.0 Client Credentials flow for server-to-server integrations
+      flows:
+        clientCredentials:
+          tokenUrl: https://app.trelica.com/connect/token
+          scopes:
+            Apps.Read: Read application data
+            Apps.Users.Read: Read application user data
+            People.Read: Read people data
+            People.Write: Create and update people records
+            Contracts.Read: Read contract data
+            Workflows.Read: Read workflow data
+            Assets.Read: Read asset data
+            AuditLog.Read: Read audit log entries
+            Users.Read: Read users via SCIM
+    OAuth2AuthorizationCode:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow for third-party developer apps
+      flows:
+        authorizationCode:
+          authorizationUrl: https://app.trelica.com/connect/authorize
+          tokenUrl: https://app.trelica.com/connect/token
+          scopes:
+            Apps.Read: Read application data
+            Apps.Users.Read: Read application user data
+            People.Read: Read people data
+            People.Write: Create and update people records
+            Contracts.Read: Read contract data
+            Workflows.Read: Read workflow data
+            Assets.Read: Read asset data
+            AuditLog.Read: Read audit log entries
+            Users.Read: Read users via SCIM
