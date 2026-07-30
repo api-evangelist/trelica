@@ -6,7 +6,20 @@ description: >-
   applications, users, people, contracts, workflows, assets, and audit logs with OAuth 2.0 authentication using Client
   Credentials and Authorization Code flows.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trelica.png
 tags:
   - Contract Management
   - IT Management
@@ -18,39 +31,198 @@ created: '2026-03-27'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: trelica:trelica
-    name: Trelica REST API
-    description: >-
-      The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform,
-      including applications, people, contracts, workflows, assets, audit logs, and user management. The API uses OAuth
-      2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps).
-      The Users endpoint follows the SCIM protocol.
-    humanURL: https://trelica.gitbook.io/trelica-api
-    baseURL: https://app.trelica.com/api
-    tags:
-      - Application Discovery
-      - Contract Management
-      - IT Management
-      - License Management
-      - SaaS Management
-      - Software Asset Management
-    properties:
-      - type: Documentation
-        url: https://trelica.gitbook.io/trelica-api
-      - type: Documentation
-        url: https://help.trelica.com/hc/en-us/sections/7739034184093-API
-      - type: Authentication
-        url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
-      - type: OpenAPI
-        url: openapi/trelica-rest-api-openapi.yml
-      - type: GitHubOrganization
-        url: https://github.com/trelica
-      - type: GitHubRepository
-        url: https://github.com/trelica/trelica-api-sdk
-      - type: GitHubRepository
-        url: https://github.com/trelica/powershell
-      - type: GitHubRepository
-        url: https://github.com/trelica/node
+- aid: trelica:trelica-application-users-api
+  name: Trelica Application Users API
+  description: Manage users associated with specific applications
+  humanURL: https://trelica.gitbook.io/trelica-api
+  baseURL: https://app.trelica.com/api
+  tags:
+  - Application Users
+  properties:
+  - type: OpenAPI
+    url: openapi/trelica-application-users-api-openapi.yml
+  - type: Documentation
+    url: https://trelica.gitbook.io/trelica-api
+  - type: Documentation
+    url: https://help.trelica.com/hc/en-us/sections/7739034184093-API
+  - type: Authentication
+    url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
+  - type: GitHubOrganization
+    url: https://github.com/trelica
+  - type: GitHubRepository
+    url: https://github.com/trelica/trelica-api-sdk
+  - type: GitHubRepository
+    url: https://github.com/trelica/powershell
+  - type: GitHubRepository
+    url: https://github.com/trelica/node
+- aid: trelica:trelica-applications-api
+  name: Trelica Applications API
+  description: Manage and query SaaS applications in the Trelica catalog
+  humanURL: https://trelica.gitbook.io/trelica-api
+  baseURL: https://app.trelica.com/api
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/trelica-applications-api-openapi.yml
+  - type: Documentation
+    url: https://trelica.gitbook.io/trelica-api
+  - type: Documentation
+    url: https://help.trelica.com/hc/en-us/sections/7739034184093-API
+  - type: Authentication
+    url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
+  - type: GitHubOrganization
+    url: https://github.com/trelica
+  - type: GitHubRepository
+    url: https://github.com/trelica/trelica-api-sdk
+  - type: GitHubRepository
+    url: https://github.com/trelica/powershell
+  - type: GitHubRepository
+    url: https://github.com/trelica/node
+- aid: trelica:trelica-assets-api
+  name: Trelica Assets API
+  description: Manage software and hardware assets
+  humanURL: https://trelica.gitbook.io/trelica-api
+  baseURL: https://app.trelica.com/api
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/trelica-assets-api-openapi.yml
+  - type: Documentation
+    url: https://trelica.gitbook.io/trelica-api
+  - type: Documentation
+    url: https://help.trelica.com/hc/en-us/sections/7739034184093-API
+  - type: Authentication
+    url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
+  - type: GitHubOrganization
+    url: https://github.com/trelica
+  - type: GitHubRepository
+    url: https://github.com/trelica/trelica-api-sdk
+  - type: GitHubRepository
+    url: https://github.com/trelica/powershell
+  - type: GitHubRepository
+    url: https://github.com/trelica/node
+- aid: trelica:trelica-audit-log-api
+  name: Trelica Audit Log API
+  description: Access audit trail of changes and events
+  humanURL: https://trelica.gitbook.io/trelica-api
+  baseURL: https://app.trelica.com/api
+  tags:
+  - Audit Log
+  properties:
+  - type: OpenAPI
+    url: openapi/trelica-audit-log-api-openapi.yml
+  - type: Documentation
+    url: https://trelica.gitbook.io/trelica-api
+  - type: Documentation
+    url: https://help.trelica.com/hc/en-us/sections/7739034184093-API
+  - type: Authentication
+    url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
+  - type: GitHubOrganization
+    url: https://github.com/trelica
+  - type: GitHubRepository
+    url: https://github.com/trelica/trelica-api-sdk
+  - type: GitHubRepository
+    url: https://github.com/trelica/powershell
+  - type: GitHubRepository
+    url: https://github.com/trelica/node
+- aid: trelica:trelica-contracts-api
+  name: Trelica Contracts API
+  description: Manage software contracts and renewals
+  humanURL: https://trelica.gitbook.io/trelica-api
+  baseURL: https://app.trelica.com/api
+  tags:
+  - Contracts
+  properties:
+  - type: OpenAPI
+    url: openapi/trelica-contracts-api-openapi.yml
+  - type: Documentation
+    url: https://trelica.gitbook.io/trelica-api
+  - type: Documentation
+    url: https://help.trelica.com/hc/en-us/sections/7739034184093-API
+  - type: Authentication
+    url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
+  - type: GitHubOrganization
+    url: https://github.com/trelica
+  - type: GitHubRepository
+    url: https://github.com/trelica/trelica-api-sdk
+  - type: GitHubRepository
+    url: https://github.com/trelica/powershell
+  - type: GitHubRepository
+    url: https://github.com/trelica/node
+- aid: trelica:trelica-people-api
+  name: Trelica People API
+  description: Manage people/employees within the organization
+  humanURL: https://trelica.gitbook.io/trelica-api
+  baseURL: https://app.trelica.com/api
+  tags:
+  - People
+  properties:
+  - type: OpenAPI
+    url: openapi/trelica-people-api-openapi.yml
+  - type: Documentation
+    url: https://trelica.gitbook.io/trelica-api
+  - type: Documentation
+    url: https://help.trelica.com/hc/en-us/sections/7739034184093-API
+  - type: Authentication
+    url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
+  - type: GitHubOrganization
+    url: https://github.com/trelica
+  - type: GitHubRepository
+    url: https://github.com/trelica/trelica-api-sdk
+  - type: GitHubRepository
+    url: https://github.com/trelica/powershell
+  - type: GitHubRepository
+    url: https://github.com/trelica/node
+- aid: trelica:trelica-users-scim-api
+  name: Trelica Users (SCIM) API
+  description: User provisioning via SCIM 2.0 protocol
+  humanURL: https://trelica.gitbook.io/trelica-api
+  baseURL: https://app.trelica.com/api
+  tags:
+  - Users (SCIM)
+  properties:
+  - type: OpenAPI
+    url: openapi/trelica-users-scim-api-openapi.yml
+  - type: Documentation
+    url: https://trelica.gitbook.io/trelica-api
+  - type: Documentation
+    url: https://help.trelica.com/hc/en-us/sections/7739034184093-API
+  - type: Authentication
+    url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
+  - type: GitHubOrganization
+    url: https://github.com/trelica
+  - type: GitHubRepository
+    url: https://github.com/trelica/trelica-api-sdk
+  - type: GitHubRepository
+    url: https://github.com/trelica/powershell
+  - type: GitHubRepository
+    url: https://github.com/trelica/node
+- aid: trelica:trelica-workflows-api
+  name: Trelica Workflows API
+  description: Manage automation workflows
+  humanURL: https://trelica.gitbook.io/trelica-api
+  baseURL: https://app.trelica.com/api
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/trelica-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://trelica.gitbook.io/trelica-api
+  - type: Documentation
+    url: https://help.trelica.com/hc/en-us/sections/7739034184093-API
+  - type: Authentication
+    url: https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API
+  - type: GitHubOrganization
+    url: https://github.com/trelica
+  - type: GitHubRepository
+    url: https://github.com/trelica/trelica-api-sdk
+  - type: GitHubRepository
+    url: https://github.com/trelica/powershell
+  - type: GitHubRepository
+    url: https://github.com/trelica/node
 common:
   - type: AgenticAccess
     url: agentic-access/trelica-agentic-access.yml
