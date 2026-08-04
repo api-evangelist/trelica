@@ -1,0 +1,28 @@
+{
+  "provider": "trelica",
+  "sources": [
+    "trelica-application-users-api-openapi.yml",
+    "trelica-applications-api-openapi.yml",
+    "trelica-assets-api-openapi.yml",
+    "trelica-audit-log-api-openapi.yml",
+    "trelica-contracts-api-openapi.yml",
+    "trelica-people-api-openapi.yml",
+    "trelica-users-scim-api-openapi.yml",
+    "trelica-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "trelica-application-users-api-openapi.yml",
+    "trelica-applications-api-openapi.yml",
+    "trelica-assets-api-openapi.yml",
+    "trelica-audit-log-api-openapi.yml",
+    "trelica-contracts-api-openapi.yml",
+    "trelica-people-api-openapi.yml",
+    "trelica-users-scim-api-openapi.yml",
+    "trelica-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
