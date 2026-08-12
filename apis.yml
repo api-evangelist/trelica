@@ -224,6 +224,9 @@ apis:
   - type: GitHubRepository
     url: https://github.com/trelica/node
 common:
+  - type: License
+    name: MIT
+    url: https://github.com/trelica/trelica-api-sdk/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/trelica-agentic-access.yml
   - type: DomainSecurity
