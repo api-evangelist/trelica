@@ -61,6 +61,8 @@ apis:
   humanURL: https://trelica.gitbook.io/trelica-api
   baseURL: https://app.trelica.com/api
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
