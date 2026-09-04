@@ -30,6 +30,7 @@ accessModel:
   source:
   - plans
   - authentication
+  - {url: 'https://www.trelica.com', status: 301, note: 'declared website redirects to https://1password.com/product/saas-manager — a different registrable domain (trelica.com -> 1password.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trelica.png
