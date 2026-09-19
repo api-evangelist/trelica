@@ -125,6 +125,8 @@ apis:
   humanURL: https://trelica.gitbook.io/trelica-api
   baseURL: https://app.trelica.com/api
   tags:
+  - Audit Logs
+  tags_raw:
   - Audit Log
   properties:
   - type: OpenAPI
