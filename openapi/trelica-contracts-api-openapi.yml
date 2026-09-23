@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Trelica REST Application Users Contracts API
+  title: Trelica REST Contracts API
   description: The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.
   version: 1.0.0
   contact:

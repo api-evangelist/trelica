@@ -1,14 +1,7 @@
 {
   "provider": "trelica",
   "sources": [
-    "trelica-application-users-api-openapi.yml",
-    "trelica-applications-api-openapi.yml",
-    "trelica-assets-api-openapi.yml",
-    "trelica-audit-log-api-openapi.yml",
-    "trelica-contracts-api-openapi.yml",
-    "trelica-people-api-openapi.yml",
-    "trelica-users-scim-api-openapi.yml",
-    "trelica-workflows-api-openapi.yml"
+    "_original/trelica-rest-api-openapi.yml"
   ],
   "outputs": [
     "trelica-application-users-api-openapi.yml",
@@ -23,6 +16,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "trelica-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "trelica-application-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trelica-applications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trelica-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trelica-audit-log-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trelica-contracts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trelica-people-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trelica-users-scim-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trelica-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
