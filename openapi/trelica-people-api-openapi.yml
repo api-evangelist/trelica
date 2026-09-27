@@ -161,6 +161,25 @@ paths:
         - People.Write
 components:
   schemas:
+    PersonInput:
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: Full display name
+        email:
+          type: string
+          format: email
+          description: Primary email address
+        department:
+          type: string
+          description: Department or team
+        jobTitle:
+          type: string
+          description: Job title
+        active:
+          type: boolean
+          description: Whether the person is active
     Person:
       type: object
       properties:
@@ -198,25 +217,6 @@ components:
           type: string
           format: date-time
           description: Last modification timestamp
-    PersonInput:
-      type: object
-      properties:
-        displayName:
-          type: string
-          description: Full display name
-        email:
-          type: string
-          format: email
-          description: Primary email address
-        department:
-          type: string
-          description: Department or team
-        jobTitle:
-          type: string
-          description: Job title
-        active:
-          type: boolean
-          description: Whether the person is active
   securitySchemes:
     OAuth2ClientCredentials:
       type: oauth2
