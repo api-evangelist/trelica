@@ -1,0 +1,46 @@
+slug: trelica
+provider: Trelica
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Applications
+  spec_file: trelica-applications-api-openapi.yml
+  capability_id: BC-600.60
+  capability_id_l1: BC-600
+  capability_name: IT Application Management
+  confidence: 0.8
+  evidence: GET /apps/v1  listApplications; GET /apps/v1/{appId}  getApplication; schema Application
+  reason: The application inventory of a SaaS management platform is the application portfolio/rationalisation
+    record, squarely IT Application Management.
+- tag: Application Users
+  spec_file: trelica-application-users-api-openapi.yml
+  capability_id: BC-600.60
+  capability_id_l1: BC-600
+  capability_name: IT Application Management
+  confidence: 0.7
+  evidence: GET /apps/v1/{appId}/users  listApplicationUsers  "List Application Users"; schema AppUser;
+    vendor provides "application discovery, license optimization" for IT teams
+  reason: Enumerating which people use which SaaS application underpins SaaS application inventory and
+    licence rationalisation — IT Application Management. Not end-user identity administration, since it
+    is read-only discovery data.
+- tag: Users (SCIM)
+  spec_file: trelica-users-scim-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /scim/v2/Users  listScimUsers  "List Users (SCIM)"; schemas ScimUser, ScimListResponse;
+    "user management via SCIM"
+  reason: SCIM is the standard protocol for user provisioning and lifecycle between identity providers
+    and applications, which is Identity & Access Management. Only a read endpoint is exposed, tempering
+    confidence.

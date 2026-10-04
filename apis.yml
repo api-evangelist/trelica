@@ -242,6 +242,9 @@ apis:
   - type: GitHubRepository
     url: https://github.com/trelica/node
 common:
+  - type: CapabilityMap
+    url: capabilities/trelica-capability-edges.yml
+    name: Trelica Business Capability Map
   - type: IssueTracker
     url: https://github.com/trelica/trelica-api-sdk/issues
   - type: License
