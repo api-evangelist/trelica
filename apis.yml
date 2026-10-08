@@ -242,6 +242,12 @@ apis:
   - type: GitHubRepository
     url: https://github.com/trelica/node
 common:
+  - type: Plans
+    url: plans/trelica-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/trelica-rate-limits.yml
+  - type: FinOps
+    url: finops/trelica-finops.yml
   - type: CapabilityMap
     url: capabilities/trelica-capability-edges.yml
     name: Trelica Business Capability Map
