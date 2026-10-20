@@ -16,6 +16,19 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: trelica-zoom-own
+  label: Zoom (own)
+  partner: zoom
+  partner_name: Zoom (own)
+  category: Zoom app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.zoom.us/apps/EUZpms7SQ0CKVj8RYvm_jw
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: trelica-fivetran
   label: Fivetran
   partner: fivetran
@@ -42,16 +55,33 @@
     builder: Fivetran
   status: not-a-workflow
   arazzo: null
-- slug: trelica-zoom-own
-  label: Zoom (own)
-  partner: zoom
-  partner_name: Zoom (own)
-  category: Zoom app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.zoom.us/apps/EUZpms7SQ0CKVj8RYvm_jw
+- slug: trelica-cloud-security-alliance-star-registry
+  label: Cloud Security Alliance STAR Registry
+  partner_name: Cloud Security Alliance STAR Registry
+  category: Cloud security assurance
+  type: register
+  channel: standard-directory
+  evidence: https://cloudsecurityalliance.org/star/registry/trelica/services/trelica
   source: edge
-  relationship: platform-app
+  relationship: standard-participant
+  contract_reference:
+    register: CSA STAR Registry (cloudsecurityalliance.org/star/registry)
+    spec_file: null
+    standard: CSA STAR
+    role: star-level-1
+    registered_name: Trelica
+    registry_id: trelica
+    service_url: https://trelica.com
+    matched_domain: trelica.com
+    matched_by: domain
+    identity_source: the service URL the organisation filed on its STAR listing (no lookup)
+    levels:
+    - STAR Level 1
+    certified_products: []
+    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level
+      2 / STAR for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed
+      = every instance marked (Deprecated) by the registry; service counts never recorded
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
