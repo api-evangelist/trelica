@@ -242,6 +242,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/trelica/node
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/trelica/overview
   - type: Plans
     url: plans/trelica-plans-pricing.yml
   - type: RateLimits
