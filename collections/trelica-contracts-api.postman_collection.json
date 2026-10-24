@@ -1,381 +1,386 @@
 {
+  "info": {
+    "_postman_id": "b699ae47-e2b7-4cc8-9a3e-08ae49fa2d6a",
+    "name": "Trelica REST Contracts API",
+    "description": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:05:58.000Z",
+    "updatedAt": "2026-10-22T01:05:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b699ae47-e2b7-4cc8-9a3e-08ae49fa2d6a"
+  },
   "item": [
     {
-      "id": "65290e10-998c-43dc-9b12-ca78242686c0",
-      "name": "Contracts",
-      "description": {
-        "content": "Manage software contracts and renewals",
-        "type": "text/plain"
-      },
+      "name": "contracts",
       "item": [
         {
-          "id": "59ceb1cc-aeb0-437b-b388-6bd57fec45bd",
-          "name": "List Contracts",
-          "request": {
-            "name": "List Contracts",
-            "description": {
-              "content": "Returns a paginated list of software contracts managed in Trelica.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "contracts",
-                "v1"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "Free-text search across contract name and vendor"
-                },
-                {
-                  "disabled": false,
-                  "key": "since",
-                  "value": "<dateTime>",
-                  "description": "Filter contracts modified after this date/time"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Pagination cursor"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100",
-                  "description": "Maximum number of results (default 100)"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "1a507479-02cf-4d59-8ae2-58a2eae5a271",
-              "name": "List of contracts",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "contracts",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{contractId}",
+              "item": [
+                {
+                  "name": "Get Contract",
+                  "id": "556325c2-7f75-45dc-a914-258fe76d02de",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://app.trelica.com/connect/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/v1/:contractId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        "v1",
+                        ":contractId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b0fce15c-bd95-482e-8e50-fdc6b66c552d",
+                          "key": "contractId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the contract"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific contract by its ID."
+                  },
+                  "response": [
                     {
-                      "key": "q",
-                      "value": "<string>"
+                      "id": "adb640af-3524-49e7-96f9-21746c193758",
+                      "name": "Contract details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contracts/v1/:contractId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contracts",
+                            "v1",
+                            ":contractId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contractId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"annualValue\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"status\": \"Cancelled\",\n  \"lastModifiedDtm\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:05:59.000Z",
+                      "updatedAt": "2026-10-22T01:05:59.000Z",
+                      "uid": "35240-adb640af-3524-49e7-96f9-21746c193758"
                     },
                     {
-                      "key": "since",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
+                      "id": "4bf2e7db-f2fb-4b8d-83e6-9b3812170e5f",
+                      "name": "Contract not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contracts/v1/:contractId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contracts",
+                            "v1",
+                            ":contractId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contractId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:05:59.000Z",
+                      "updatedAt": "2026-10-22T01:05:59.000Z",
+                      "uid": "35240-4bf2e7db-f2fb-4b8d-83e6-9b3812170e5f"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
+                  "createdAt": "2026-10-22T01:05:59.000Z",
+                  "updatedAt": "2026-10-22T01:05:59.000Z",
+                  "uid": "35240-556325c2-7f75-45dc-a914-258fe76d02de"
+                }
+              ],
+              "id": "4804f73d-07ff-4f3c-ba7b-0f057633762f",
+              "createdAt": "2026-10-22T01:05:58.000Z",
+              "updatedAt": "2026-10-22T01:05:58.000Z",
+              "uid": "35240-4804f73d-07ff-4f3c-ba7b-0f057633762f"
+            },
+            {
+              "name": "List Contracts",
+              "id": "ab977810-295b-40a4-a948-09be61882db2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                      "type": "string"
                     },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://app.trelica.com/connect/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"next\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"vendor\": \"string\",\n      \"applicationId\": \"string\",\n      \"startDate\": \"2022-10-05\",\n      \"endDate\": \"2025-06-04\",\n      \"annualValue\": 4828.600356703735,\n      \"currency\": \"string\",\n      \"status\": \"Cancelled\",\n      \"lastModifiedDtm\": \"1964-03-16T00:35:46.019Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"vendor\": \"string\",\n      \"applicationId\": \"string\",\n      \"startDate\": \"1991-09-11\",\n      \"endDate\": \"1985-08-25\",\n      \"annualValue\": 7109.451892251544,\n      \"currency\": \"string\",\n      \"status\": \"Expired\",\n      \"lastModifiedDtm\": \"1965-03-11T23:35:01.420Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "06b503f3-d1b5-43a3-9f8d-a087d0d8ab20",
-              "name": "Unauthorized",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/contracts/v1?q=<string>&since=<dateTime>&after=<string>&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "contracts",
                     "v1"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Free-text search across contract name and vendor",
                       "key": "q",
                       "value": "<string>"
                     },
                     {
+                      "description": "Filter contracts modified after this date/time",
                       "key": "since",
                       "value": "<dateTime>"
                     },
                     {
+                      "description": "Pagination cursor",
                       "key": "after",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of results (default 100)",
                       "key": "limit",
                       "value": "100"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "93c0a3a4-e3f8-441f-8d23-97ed549a4a9d",
-          "name": "Get Contract",
-          "request": {
-            "name": "Get Contract",
-            "description": {
-              "content": "Returns details for a specific contract by its ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "contracts",
-                "v1",
-                ":contractId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "contractId",
-                  "description": "(Required) Unique identifier for the contract"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "d9c69da9-9852-4951-8e18-17a7261f58d6",
-              "name": "Contract details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "contracts",
-                    "v1",
-                    ":contractId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "contractId",
-                      "description": "(Required) Unique identifier for the contract"
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                "description": "Returns a paginated list of software contracts managed in Trelica."
+              },
+              "response": [
+                {
+                  "id": "ae0707f5-68f5-425a-a9af-8e2663884270",
+                  "name": "List of contracts",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/v1?q=<string>&since=<dateTime>&after=<string>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Free-text search across contract name and vendor",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter contracts modified after this date/time",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Pagination cursor",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results (default 100)",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"vendor\": \"string\",\n  \"applicationId\": \"string\",\n  \"startDate\": \"1971-11-23\",\n  \"endDate\": \"1964-06-30\",\n  \"annualValue\": 43.15075636493471,\n  \"currency\": \"string\",\n  \"status\": \"Expired\",\n  \"lastModifiedDtm\": \"1976-12-22T02:41:55.782Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f5cc8067-9de1-402a-ae53-47ce6e8c9fdd",
-              "name": "Contract not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "contracts",
-                    "v1",
-                    ":contractId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "contractId",
-                      "description": "(Required) Unique identifier for the contract"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
-                  ]
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"next\": \"<string>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"vendor\": \"<string>\",\n      \"applicationId\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"annualValue\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"status\": \"Cancelled\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"vendor\": \"<string>\",\n      \"applicationId\": \"<string>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"annualValue\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"status\": \"Pending\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:05:59.000Z",
+                  "updatedAt": "2026-10-22T01:05:59.000Z",
+                  "uid": "35240-ae0707f5-68f5-425a-a9af-8e2663884270"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "b2e57d1b-c6ee-4aa3-8408-1832e8a47295",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/v1?q=<string>&since=<dateTime>&after=<string>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Free-text search across contract name and vendor",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter contracts modified after this date/time",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Pagination cursor",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results (default 100)",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:05:59.000Z",
+                  "updatedAt": "2026-10-22T01:05:59.000Z",
+                  "uid": "35240-b2e57d1b-c6ee-4aa3-8408-1832e8a47295"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:05:59.000Z",
+              "updatedAt": "2026-10-22T01:05:59.000Z",
+              "uid": "35240-ab977810-295b-40a4-a948-09be61882db2"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d096e780-610a-4325-81f9-b9b3becebcf1",
+          "createdAt": "2026-10-22T01:05:58.000Z",
+          "updatedAt": "2026-10-22T01:05:58.000Z",
+          "uid": "35240-d096e780-610a-4325-81f9-b9b3becebcf1"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://app.trelica.com/api",
-      "key": "baseUrl"
+      "id": "0b865ab0-4f75-4f4e-a1be-d0b7d5a476e1",
+      "createdAt": "2026-10-22T01:05:58.000Z",
+      "updatedAt": "2026-10-22T01:05:58.000Z",
+      "uid": "35240-0b865ab0-4f75-4f4e-a1be-d0b7d5a476e1"
     }
   ],
   "auth": {
@@ -383,25 +388,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
+        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://app.trelica.com/connect/token"
+        "value": "https://app.trelica.com/connect/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "4ed26bd7-7606-458f-861e-4267fdbfa96c",
-    "name": "Trelica REST Application Users Contracts API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.trelica.com/api"
     }
-  }
+  ]
 }

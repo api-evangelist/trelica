@@ -1,857 +1,866 @@
 {
+  "info": {
+    "_postman_id": "2a6f4947-15d0-4a75-98a4-d4093ac59cec",
+    "name": "Trelica REST People API",
+    "description": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:06:03.000Z",
+    "updatedAt": "2026-10-22T01:06:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2a6f4947-15d0-4a75-98a4-d4093ac59cec"
+  },
   "item": [
     {
-      "id": "beca3b49-90ed-4ce2-b45c-79fbc4320113",
-      "name": "People",
-      "description": {
-        "content": "Manage people/employees within the organization",
-        "type": "text/plain"
-      },
+      "name": "people",
       "item": [
         {
-          "id": "0246e4e5-b75a-4ce1-95ea-195068324fab",
-          "name": "List People",
-          "request": {
-            "name": "List People",
-            "description": {
-              "content": "Returns a paginated list of people (employees) in the organization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "people",
-                "v1"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "Free-text search across name and email"
-                },
-                {
-                  "disabled": false,
-                  "key": "since",
-                  "value": "<dateTime>",
-                  "description": "Filter people modified after this date/time"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Pagination cursor"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100",
-                  "description": "Maximum number of results (default 100)"
-                },
-                {
-                  "disabled": false,
-                  "key": "filter",
-                  "value": "<string>",
-                  "description": "SCIM-style filter expression"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "8cc2ef4d-4fe0-4b14-b7b0-98333f9f44cd",
-              "name": "List of people",
-              "originalRequest": {
+              "name": "{personId}",
+              "item": [
+                {
+                  "name": "Get Person",
+                  "id": "284277c5-deac-447d-840c-54ede09367dc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://app.trelica.com/connect/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/people/v1/:personId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "people",
+                        "v1",
+                        ":personId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8ecbcff4-6e3b-4093-84d8-cfe44ab1a755",
+                          "key": "personId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the person"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific person by their ID."
+                  },
+                  "response": [
+                    {
+                      "id": "3f1fbf6f-289d-4093-948c-c6748f120908",
+                      "name": "Person details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/people/v1/:personId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "people",
+                            "v1",
+                            ":personId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "personId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"manager\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"lastModifiedDtm\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:06:04.000Z",
+                      "updatedAt": "2026-10-22T01:06:04.000Z",
+                      "uid": "35240-3f1fbf6f-289d-4093-948c-c6748f120908"
+                    },
+                    {
+                      "id": "475bba4e-3f35-468b-bdb0-8bbd915cc492",
+                      "name": "Person not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/people/v1/:personId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "people",
+                            "v1",
+                            ":personId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "personId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:06:04.000Z",
+                      "updatedAt": "2026-10-22T01:06:04.000Z",
+                      "uid": "35240-475bba4e-3f35-468b-bdb0-8bbd915cc492"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-284277c5-deac-447d-840c-54ede09367dc"
+                },
+                {
+                  "name": "Update Person",
+                  "id": "facc87ec-b641-49a3-924d-1fbe6463af91",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://app.trelica.com/connect/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/people/v1/:personId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "people",
+                        "v1",
+                        ":personId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "77af486f-524e-4141-9fcd-e8fe5511dfbf",
+                          "key": "personId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Updates specific fields on a person record."
+                  },
+                  "response": [
+                    {
+                      "id": "7ae14abf-1c0a-4e6a-9922-7fda2def9772",
+                      "name": "Person updated successfully",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/people/v1/:personId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "people",
+                            "v1",
+                            ":personId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "personId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"manager\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"lastModifiedDtm\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:06:04.000Z",
+                      "updatedAt": "2026-10-22T01:06:04.000Z",
+                      "uid": "35240-7ae14abf-1c0a-4e6a-9922-7fda2def9772"
+                    },
+                    {
+                      "id": "cbd1e671-12b7-4da8-a81a-765d602b744e",
+                      "name": "Invalid request body",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/people/v1/:personId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "people",
+                            "v1",
+                            ":personId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "personId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:06:04.000Z",
+                      "updatedAt": "2026-10-22T01:06:04.000Z",
+                      "uid": "35240-cbd1e671-12b7-4da8-a81a-765d602b744e"
+                    },
+                    {
+                      "id": "b0202ef9-1dd3-42c0-9d21-3ee1381d90ec",
+                      "name": "Person not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/people/v1/:personId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "people",
+                            "v1",
+                            ":personId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "personId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:06:04.000Z",
+                      "updatedAt": "2026-10-22T01:06:04.000Z",
+                      "uid": "35240-b0202ef9-1dd3-42c0-9d21-3ee1381d90ec"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-facc87ec-b641-49a3-924d-1fbe6463af91"
+                }
+              ],
+              "id": "5744d380-703b-4a58-8f1c-7bd2ea34e85c",
+              "createdAt": "2026-10-22T01:06:04.000Z",
+              "updatedAt": "2026-10-22T01:06:04.000Z",
+              "uid": "35240-5744d380-703b-4a58-8f1c-7bd2ea34e85c"
+            },
+            {
+              "name": "List People",
+              "id": "0d75f872-3d33-49cc-92d6-0068822fad49",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://app.trelica.com/connect/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/people/v1?q=<string>&since=<dateTime>&after=<string>&limit=100&filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "people",
                     "v1"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Free-text search across name and email",
                       "key": "q",
                       "value": "<string>"
                     },
                     {
+                      "description": "Filter people modified after this date/time",
                       "key": "since",
                       "value": "<dateTime>"
                     },
                     {
+                      "description": "Pagination cursor",
                       "key": "after",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of results (default 100)",
                       "key": "limit",
                       "value": "100"
                     },
                     {
+                      "description": "SCIM-style filter expression",
                       "key": "filter",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns a paginated list of people (employees) in the organization."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"next\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"email\": \"NQyy5Q6L-zZeKW@upOFsjNgTxCUfgIvSUpCxdFpCTXs.hd\",\n      \"department\": \"string\",\n      \"jobTitle\": \"string\",\n      \"manager\": \"string\",\n      \"active\": false,\n      \"startDate\": \"1980-03-03\",\n      \"endDate\": \"1961-06-10\",\n      \"lastModifiedDtm\": \"1963-01-27T15:15:18.147Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"email\": \"xUhQ8QyRXfIA@mQzsRpzddtweZCdExQJFJBrlTtJ.sx\",\n      \"department\": \"string\",\n      \"jobTitle\": \"string\",\n      \"manager\": \"string\",\n      \"active\": true,\n      \"startDate\": \"2011-01-27\",\n      \"endDate\": \"2000-12-08\",\n      \"lastModifiedDtm\": \"2018-09-21T01:39:38.105Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b623ce45-9a76-40c0-935a-8c9a967184c8",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "people",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "4fc687c7-e099-4787-bdf4-3c81907388da",
+                  "name": "List of people",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/people/v1?q=<string>&since=<dateTime>&after=<string>&limit=100&filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "people",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Free-text search across name and email",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter people modified after this date/time",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Pagination cursor",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results (default 100)",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "SCIM-style filter expression",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "since",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e0babbba-a891-4cdc-9cd7-ed0e1c56dc1a",
-          "name": "Create Person",
-          "request": {
-            "name": "Create Person",
-            "description": {
-              "content": "Creates a new person record in Trelica.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "people",
-                "v1"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"next\": \"<string>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"email\": \"<email>\",\n      \"department\": \"<string>\",\n      \"jobTitle\": \"<string>\",\n      \"manager\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"email\": \"<email>\",\n      \"department\": \"<string>\",\n      \"jobTitle\": \"<string>\",\n      \"manager\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"startDate\": \"<date>\",\n      \"endDate\": \"<date>\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-4fc687c7-e099-4787-bdf4-3c81907388da"
                 },
                 {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ffc540ba-e060-4098-aa15-963ded5abf62",
-              "name": "Person created successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "people",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                  "id": "fc8e8fcc-0ab5-429b-b161-8abd1d59023c",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/people/v1?q=<string>&since=<dateTime>&after=<string>&limit=100&filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "people",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Free-text search across name and email",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter people modified after this date/time",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Pagination cursor",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results (default 100)",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "SCIM-style filter expression",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-fc8e8fcc-0ab5-429b-b161-8abd1d59023c"
+                }
+              ],
+              "createdAt": "2026-10-22T01:06:04.000Z",
+              "updatedAt": "2026-10-22T01:06:04.000Z",
+              "uid": "35240-0d75f872-3d33-49cc-92d6-0068822fad49"
+            },
+            {
+              "name": "Create Person",
+              "id": "2e0223c9-b7cb-4488-aed9-c51d9ed4b194",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://app.trelica.com/connect/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "string"
+                    }
+                  ]
+                },
                 "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"displayName\": \"string\",\n  \"email\": \"qFOQwfIQ5KashB@TElwLjhHOXF.qus\",\n  \"department\": \"string\",\n  \"jobTitle\": \"string\",\n  \"manager\": \"string\",\n  \"active\": true,\n  \"startDate\": \"2009-02-01\",\n  \"endDate\": \"1955-06-19\",\n  \"lastModifiedDtm\": \"1988-12-07T23:53:56.072Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2c7046ba-369b-441d-8a9e-832b7842479d",
-              "name": "Invalid request body",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "people",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "25ff4ecb-667b-4fd1-911c-2d766574aacd",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "people",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "aafa0797-3de6-4f11-ac6d-4bd34da102a9",
-          "name": "Get Person",
-          "request": {
-            "name": "Get Person",
-            "description": {
-              "content": "Returns details for a specific person by their ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "people",
-                "v1",
-                ":personId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "personId",
-                  "description": "(Required) Unique identifier for the person"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "5d523b19-2c63-40f2-a72c-b319469e9d6e",
-              "name": "Person details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "people",
-                    "v1",
-                    ":personId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "personId",
-                      "description": "(Required) Unique identifier for the person"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"displayName\": \"string\",\n  \"email\": \"qFOQwfIQ5KashB@TElwLjhHOXF.qus\",\n  \"department\": \"string\",\n  \"jobTitle\": \"string\",\n  \"manager\": \"string\",\n  \"active\": true,\n  \"startDate\": \"2009-02-01\",\n  \"endDate\": \"1955-06-19\",\n  \"lastModifiedDtm\": \"1988-12-07T23:53:56.072Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d2019356-2bf6-4144-9166-70ac072fa9b5",
-              "name": "Person not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "people",
-                    "v1",
-                    ":personId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "personId",
-                      "description": "(Required) Unique identifier for the person"
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
                   }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a1db3b26-bf7b-4813-91a1-e586e4b812c7",
-          "name": "Update Person",
-          "request": {
-            "name": "Update Person",
-            "description": {
-              "content": "Updates specific fields on a person record.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "people",
-                "v1",
-                ":personId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "personId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
                 },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "5f35236b-6af6-40fe-ab97-f75b0af7569c",
-              "name": "Person updated successfully",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "people",
-                    "v1",
-                    ":personId"
-                  ],
+                  "raw": "{{baseUrl}}/people/v1",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "personId",
-                      "description": "(Required) "
-                    }
+                  "path": [
+                    "people",
+                    "v1"
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
+                "description": "Creates a new person record in Trelica."
+              },
+              "response": [
+                {
+                  "id": "7dab3303-9db0-4671-998f-67986489b6f1",
+                  "name": "Person created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "url": {
+                      "raw": "{{baseUrl}}/people/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "people",
+                        "v1"
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"displayName\": \"string\",\n  \"email\": \"qFOQwfIQ5KashB@TElwLjhHOXF.qus\",\n  \"department\": \"string\",\n  \"jobTitle\": \"string\",\n  \"manager\": \"string\",\n  \"active\": true,\n  \"startDate\": \"2009-02-01\",\n  \"endDate\": \"1955-06-19\",\n  \"lastModifiedDtm\": \"1988-12-07T23:53:56.072Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5ee9e0ea-837b-4437-bfad-e6d31045d6e9",
-              "name": "Invalid request body",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "people",
-                    "v1",
-                    ":personId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "personId",
-                      "description": "(Required) "
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
-                  ]
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"manager\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"lastModifiedDtm\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-7dab3303-9db0-4671-998f-67986489b6f1"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "39f03e8c-16dd-44f1-b757-f3caa25079ca",
+                  "name": "Invalid request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/people/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "people",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-39f03e8c-16dd-44f1-b757-f3caa25079ca"
+                },
+                {
+                  "id": "dbb58de0-34d5-4148-b78b-a74ae4cf9cfd",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/people/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "people",
+                        "v1"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:06:04.000Z",
+                  "updatedAt": "2026-10-22T01:06:04.000Z",
+                  "uid": "35240-dbb58de0-34d5-4148-b78b-a74ae4cf9cfd"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5e1db2b2-bada-4b3f-90af-de0e784e08ab",
-              "name": "Person not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "people",
-                    "v1",
-                    ":personId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "personId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"department\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:06:04.000Z",
+              "updatedAt": "2026-10-22T01:06:04.000Z",
+              "uid": "35240-2e0223c9-b7cb-4488-aed9-c51d9ed4b194"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1d706536-3acb-43be-87bf-9634f4394102",
+          "createdAt": "2026-10-22T01:06:04.000Z",
+          "updatedAt": "2026-10-22T01:06:04.000Z",
+          "uid": "35240-1d706536-3acb-43be-87bf-9634f4394102"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://app.trelica.com/api",
-      "key": "baseUrl"
+      "id": "22abda97-1afa-427a-9acf-1c5d33d0d269",
+      "createdAt": "2026-10-22T01:06:04.000Z",
+      "updatedAt": "2026-10-22T01:06:04.000Z",
+      "uid": "35240-22abda97-1afa-427a-9acf-1c5d33d0d269"
     }
   ],
   "auth": {
@@ -859,25 +868,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
+        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://app.trelica.com/connect/token"
+        "value": "https://app.trelica.com/connect/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "baf12df4-77d2-411e-a125-0565aec26ee4",
-    "name": "Trelica REST Application Users People API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.trelica.com/api"
     }
-  }
+  ]
 }

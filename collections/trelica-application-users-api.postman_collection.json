@@ -1,333 +1,352 @@
 {
+  "info": {
+    "_postman_id": "5e3d14fa-a0c5-4c63-b4c1-c4d504f38339",
+    "name": "Trelica REST Application Users API",
+    "description": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:05:27.000Z",
+    "updatedAt": "2026-10-22T01:05:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5e3d14fa-a0c5-4c63-b4c1-c4d504f38339"
+  },
   "item": [
     {
-      "id": "fd85c511-e207-4321-8e43-9f6155f2d06c",
-      "name": "Application Users",
-      "description": {
-        "content": "Manage users associated with specific applications",
-        "type": "text/plain"
-      },
+      "name": "apps",
       "item": [
         {
-          "id": "daf2210c-49a7-4652-acf3-268b424ebdba",
-          "name": "List Application Users",
-          "request": {
-            "name": "List Application Users",
-            "description": {
-              "content": "Returns a paginated list of users associated with a specific application.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                "v1",
-                ":appId",
-                "users"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "Free-text search across user ID, email, and name"
-                },
-                {
-                  "disabled": false,
-                  "key": "since",
-                  "value": "<dateTime>",
-                  "description": "Filter users modified after this date/time"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Pagination cursor for next page of results"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100",
-                  "description": "Maximum number of results to return (default 100)"
-                },
-                {
-                  "disabled": false,
-                  "key": "filter",
-                  "value": "<string>",
-                  "description": "SCIM-style filter expression"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "appId",
-                  "description": "(Required) Unique identifier for the application"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "537bbe8c-cf3b-4e9c-a456-09f522680e23",
-              "name": "List of application users",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    "v1",
-                    ":appId",
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "since",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "appId",
-                      "description": "(Required) Unique identifier for the application"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{appId}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "users",
+                  "item": [
+                    {
+                      "name": "List Application Users",
+                      "id": "03c83597-cf7f-4f6a-aad6-f5f50fae3915",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://app.trelica.com/connect/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/v1/:appId/users?q=<string>&since=<dateTime>&after=<string>&limit=100&filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            "v1",
+                            ":appId",
+                            "users"
+                          ],
+                          "query": [
+                            {
+                              "description": "Free-text search across user ID, email, and name",
+                              "key": "q",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter users modified after this date/time",
+                              "key": "since",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Pagination cursor for next page of results",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of results to return (default 100)",
+                              "key": "limit",
+                              "value": "100"
+                            },
+                            {
+                              "description": "SCIM-style filter expression",
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "3957bf46-9cdf-4181-8bd0-486b90007007",
+                              "key": "appId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier for the application"
+                            }
+                          ]
+                        },
+                        "description": "Returns a paginated list of users associated with a specific application."
+                      },
+                      "response": [
+                        {
+                          "id": "d77b2c6b-6c7f-45fe-9e5f-866f2cfe0f5c",
+                          "name": "List of application users",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/v1/:appId/users?q=<string>&since=<dateTime>&after=<string>&limit=100&filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                "v1",
+                                ":appId",
+                                "users"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Free-text search across user ID, email, and name",
+                                  "key": "q",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter users modified after this date/time",
+                                  "key": "since",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "Pagination cursor for next page of results",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of results to return (default 100)",
+                                  "key": "limit",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "SCIM-style filter expression",
+                                  "key": "filter",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"next\": \"<string>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"status\": \"Active\",\n      \"lastLoginDtm\": \"<dateTime>\",\n      \"deleted\": \"<boolean>\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"status\": \"Inactive\",\n      \"lastLoginDtm\": \"<dateTime>\",\n      \"deleted\": \"<boolean>\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:05:27.000Z",
+                          "updatedAt": "2026-10-22T01:05:27.000Z",
+                          "uid": "35240-d77b2c6b-6c7f-45fe-9e5f-866f2cfe0f5c"
+                        },
+                        {
+                          "id": "fa526b16-200b-493a-b237-548fecc49050",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/v1/:appId/users?q=<string>&since=<dateTime>&after=<string>&limit=100&filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                "v1",
+                                ":appId",
+                                "users"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Free-text search across user ID, email, and name",
+                                  "key": "q",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter users modified after this date/time",
+                                  "key": "since",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "Pagination cursor for next page of results",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of results to return (default 100)",
+                                  "key": "limit",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "SCIM-style filter expression",
+                                  "key": "filter",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:05:27.000Z",
+                          "updatedAt": "2026-10-22T01:05:27.000Z",
+                          "uid": "35240-fa526b16-200b-493a-b237-548fecc49050"
+                        },
+                        {
+                          "id": "9e78afc8-8c44-4630-adae-0358eae446ff",
+                          "name": "Application not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/v1/:appId/users?q=<string>&since=<dateTime>&after=<string>&limit=100&filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                "v1",
+                                ":appId",
+                                "users"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Free-text search across user ID, email, and name",
+                                  "key": "q",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter users modified after this date/time",
+                                  "key": "since",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "Pagination cursor for next page of results",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of results to return (default 100)",
+                                  "key": "limit",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "SCIM-style filter expression",
+                                  "key": "filter",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:05:27.000Z",
+                          "updatedAt": "2026-10-22T01:05:27.000Z",
+                          "uid": "35240-9e78afc8-8c44-4630-adae-0358eae446ff"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:05:27.000Z",
+                      "updatedAt": "2026-10-22T01:05:27.000Z",
+                      "uid": "35240-03c83597-cf7f-4f6a-aad6-f5f50fae3915"
+                    }
+                  ],
+                  "id": "a82c64ef-8268-4e57-8b69-8cf75bbe2354",
+                  "createdAt": "2026-10-22T01:05:27.000Z",
+                  "updatedAt": "2026-10-22T01:05:27.000Z",
+                  "uid": "35240-a82c64ef-8268-4e57-8b69-8cf75bbe2354"
                 }
               ],
-              "body": "{\n  \"next\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"kWSsSwQjxcX6Qm@TdShXZAMedrTZMqCMuFOkgx.ek\",\n      \"status\": \"Suspended\",\n      \"lastLoginDtm\": \"2011-01-01T13:51:30.304Z\",\n      \"deleted\": true,\n      \"lastModifiedDtm\": \"1962-05-18T23:24:50.088Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"bhRTSw9mTitT@uHFwXLYsjqwno.iuge\",\n      \"status\": \"Active\",\n      \"lastLoginDtm\": \"2022-04-07T16:29:16.510Z\",\n      \"deleted\": false,\n      \"lastModifiedDtm\": \"1987-05-08T20:56:30.209Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3ce8d68e-5ed9-4fbd-ac12-83e5a5f86d88",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    "v1",
-                    ":appId",
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "since",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "appId",
-                      "description": "(Required) Unique identifier for the application"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "af67190d-143a-43d2-9483-11ce2489427f",
-              "name": "Application not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    "v1",
-                    ":appId",
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "since",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "appId",
-                      "description": "(Required) Unique identifier for the application"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "e05cf54b-682a-4a35-8b73-d5c30ad84f37",
+              "createdAt": "2026-10-22T01:05:27.000Z",
+              "updatedAt": "2026-10-22T01:05:27.000Z",
+              "uid": "35240-e05cf54b-682a-4a35-8b73-d5c30ad84f37"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b9c1018f-f115-42a2-90fc-01d13229878a",
+          "createdAt": "2026-10-22T01:05:27.000Z",
+          "updatedAt": "2026-10-22T01:05:27.000Z",
+          "uid": "35240-b9c1018f-f115-42a2-90fc-01d13229878a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://app.trelica.com/api",
-      "key": "baseUrl"
+      "id": "f7b7fd01-46cf-4ef4-8205-67b59b293038",
+      "createdAt": "2026-10-22T01:05:27.000Z",
+      "updatedAt": "2026-10-22T01:05:27.000Z",
+      "uid": "35240-f7b7fd01-46cf-4ef4-8205-67b59b293038"
     }
   ],
   "auth": {
@@ -335,25 +354,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
+        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://app.trelica.com/connect/token"
+        "value": "https://app.trelica.com/connect/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8bfc0611-9589-4a11-b2f8-8473de881acc",
-    "name": "Trelica REST Application Users API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.trelica.com/api"
     }
-  }
+  ]
 }

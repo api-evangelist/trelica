@@ -1,204 +1,212 @@
 {
+  "info": {
+    "_postman_id": "2f33e4e3-9fc9-46d7-9ff9-ce58e5d7fd29",
+    "name": "Trelica REST Workflows API",
+    "description": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:06:15.000Z",
+    "updatedAt": "2026-10-22T01:06:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2f33e4e3-9fc9-46d7-9ff9-ce58e5d7fd29"
+  },
   "item": [
     {
-      "id": "a0035cd8-e0c8-4da6-a9aa-cf467fa5944a",
-      "name": "Workflows",
-      "description": {
-        "content": "Manage automation workflows",
-        "type": "text/plain"
-      },
+      "name": "workflows",
       "item": [
         {
-          "id": "00e47d0f-dbd3-4c4d-a47f-efcdd43d6a7a",
-          "name": "List Workflows",
-          "request": {
-            "name": "List Workflows",
-            "description": {
-              "content": "Returns a paginated list of automation workflows configured in Trelica.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "workflows",
-                "v1"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "Free-text search across workflow names"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Pagination cursor"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100",
-                  "description": "Maximum number of results (default 100)"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "8d064891-5a9f-4f6f-867e-cc1b657d544c",
-              "name": "List of workflows",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "workflows",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "List Workflows",
+              "id": "acbddd39-9378-40b6-a523-24176a59bbbd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
                     {
-                      "key": "q",
-                      "value": "<string>"
+                      "key": "scope",
+                      "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                      "type": "string"
                     },
                     {
-                      "key": "after",
-                      "value": "<string>"
+                      "key": "accessTokenUrl",
+                      "value": "https://app.trelica.com/connect/token",
+                      "type": "string"
                     },
                     {
-                      "key": "limit",
-                      "value": "100"
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "string"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"next\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"trigger\": \"string\",\n      \"status\": \"Inactive\",\n      \"lastModifiedDtm\": \"1956-05-03T18:35:03.894Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"trigger\": \"string\",\n      \"status\": \"Inactive\",\n      \"lastModifiedDtm\": \"2004-06-06T02:32:19.615Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "205b026a-866e-4bda-860e-9c13e39f387a",
-              "name": "Unauthorized",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/workflows/v1?q=<string>&after=<string>&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "workflows",
                     "v1"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Free-text search across workflow names",
                       "key": "q",
                       "value": "<string>"
                     },
                     {
+                      "description": "Pagination cursor",
                       "key": "after",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of results (default 100)",
                       "key": "limit",
                       "value": "100"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns a paginated list of automation workflows configured in Trelica."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "6e60803f-0e29-47bd-af9c-c9fef5a81e69",
+                  "name": "List of workflows",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workflows/v1?q=<string>&after=<string>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workflows",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Free-text search across workflow names",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination cursor",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results (default 100)",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"next\": \"<string>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"trigger\": \"<string>\",\n      \"status\": \"Active\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"trigger\": \"<string>\",\n      \"status\": \"Inactive\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:06:16.000Z",
+                  "updatedAt": "2026-10-22T01:06:16.000Z",
+                  "uid": "35240-6e60803f-0e29-47bd-af9c-c9fef5a81e69"
+                },
+                {
+                  "id": "f85c29c4-f18d-4a9a-8a2d-b19cd90d80d3",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workflows/v1?q=<string>&after=<string>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workflows",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Free-text search across workflow names",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination cursor",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results (default 100)",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:06:16.000Z",
+                  "updatedAt": "2026-10-22T01:06:16.000Z",
+                  "uid": "35240-f85c29c4-f18d-4a9a-8a2d-b19cd90d80d3"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:06:16.000Z",
+              "updatedAt": "2026-10-22T01:06:16.000Z",
+              "uid": "35240-acbddd39-9378-40b6-a523-24176a59bbbd"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d9c103af-2791-49c3-a00e-a67c2c2f57f8",
+          "createdAt": "2026-10-22T01:06:16.000Z",
+          "updatedAt": "2026-10-22T01:06:16.000Z",
+          "uid": "35240-d9c103af-2791-49c3-a00e-a67c2c2f57f8"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://app.trelica.com/api",
-      "key": "baseUrl"
+      "id": "5a510fa3-a90e-43c7-bfc2-60d7a33c530b",
+      "createdAt": "2026-10-22T01:06:16.000Z",
+      "updatedAt": "2026-10-22T01:06:16.000Z",
+      "uid": "35240-5a510fa3-a90e-43c7-bfc2-60d7a33c530b"
     }
   ],
   "auth": {
@@ -206,25 +214,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
+        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://app.trelica.com/connect/token"
+        "value": "https://app.trelica.com/connect/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a168c6c2-0b80-4922-ac80-726375671952",
-    "name": "Trelica REST Application Users Workflows API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.trelica.com/api"
     }
-  }
+  ]
 }

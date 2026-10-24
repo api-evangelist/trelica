@@ -1,438 +1,442 @@
 {
+  "info": {
+    "_postman_id": "baa5cb50-e9a6-4e34-80df-6ca7a4888828",
+    "name": "Trelica REST Applications API",
+    "description": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:05:32.000Z",
+    "updatedAt": "2026-10-22T01:05:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-baa5cb50-e9a6-4e34-80df-6ca7a4888828"
+  },
   "item": [
     {
-      "id": "b2554c9d-66fb-45e4-ace0-6e6db8edb6f6",
-      "name": "Applications",
-      "description": {
-        "content": "Manage and query SaaS applications in the Trelica catalog",
-        "type": "text/plain"
-      },
+      "name": "apps",
       "item": [
         {
-          "id": "39c16a88-a984-460d-bf5f-70ecfcb259e7",
-          "name": "List Applications",
-          "request": {
-            "name": "List Applications",
-            "description": {
-              "content": "Returns a paginated list of SaaS applications tracked in Trelica.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                "v1"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "Free-text search across application name and description"
-                },
-                {
-                  "disabled": false,
-                  "key": "since",
-                  "value": "<dateTime>",
-                  "description": "Filter applications modified after this date/time (ISO 8601)"
-                },
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "Pagination cursor for next page of results"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100",
-                  "description": "Maximum number of results to return (default 100)"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "6d9a3b41-45b5-40ab-a967-5ebfac91a51c",
-              "name": "Successful response with list of applications",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{appId}",
+              "item": [
+                {
+                  "name": "Get Application",
+                  "id": "acd5e053-dfaf-4d1d-be2a-26616354b84a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://app.trelica.com/connect/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/v1/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        "v1",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7bacc188-b070-47ae-9156-280aaae7859f",
+                          "key": "appId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the application"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific application by its ID."
+                  },
+                  "response": [
                     {
-                      "key": "q",
-                      "value": "<string>"
+                      "id": "c4de0390-ec3d-4ff3-87a1-57bae10f3749",
+                      "name": "Application details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/v1/:appId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            "v1",
+                            ":appId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"status\": \"Discovered\",\n  \"vendorUrl\": \"<uri>\",\n  \"userCount\": \"<integer>\",\n  \"annualCost\": \"<number>\",\n  \"lastModifiedDtm\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:05:33.000Z",
+                      "updatedAt": "2026-10-22T01:05:33.000Z",
+                      "uid": "35240-c4de0390-ec3d-4ff3-87a1-57bae10f3749"
                     },
                     {
-                      "key": "since",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
+                      "id": "bb45fc7f-054c-4528-8a53-04960ed71e89",
+                      "name": "Application not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/v1/:appId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            "v1",
+                            ":appId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:05:33.000Z",
+                      "updatedAt": "2026-10-22T01:05:33.000Z",
+                      "uid": "35240-bb45fc7f-054c-4528-8a53-04960ed71e89"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
+                  "createdAt": "2026-10-22T01:05:33.000Z",
+                  "updatedAt": "2026-10-22T01:05:33.000Z",
+                  "uid": "35240-acd5e053-dfaf-4d1d-be2a-26616354b84a"
+                }
+              ],
+              "id": "a7555a96-d1c8-417a-a831-299e926c4b87",
+              "createdAt": "2026-10-22T01:05:33.000Z",
+              "updatedAt": "2026-10-22T01:05:33.000Z",
+              "uid": "35240-a7555a96-d1c8-417a-a831-299e926c4b87"
+            },
+            {
+              "name": "List Applications",
+              "id": "bcb97550-e7f1-4f5b-a9b0-8018e771c5ca",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+                      "type": "string"
                     },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://app.trelica.com/connect/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"next\": \"string\",\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"status\": \"Discovered\",\n      \"vendorUrl\": \"https://ZuumVUY.zfpbcPp+QBHfxSL9\",\n      \"userCount\": 5363,\n      \"annualCost\": 9762.138327465911,\n      \"lastModifiedDtm\": \"2021-12-01T02:48:14.801Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"status\": \"Managed\",\n      \"vendorUrl\": \"https://dIesXzfPXehr.scdM49nYW2oZxv\",\n      \"userCount\": 5695,\n      \"annualCost\": 9847.221475028664,\n      \"lastModifiedDtm\": \"1994-09-06T04:06:39.565Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dd09248b-f598-41ec-9329-0245e2d8658b",
-              "name": "Unauthorized - missing or invalid OAuth token",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/apps/v1?q=<string>&since=<dateTime>&after=<string>&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "apps",
                     "v1"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Free-text search across application name and description",
                       "key": "q",
                       "value": "<string>"
                     },
                     {
+                      "description": "Filter applications modified after this date/time (ISO 8601)",
                       "key": "since",
                       "value": "<dateTime>"
                     },
                     {
+                      "description": "Pagination cursor for next page of results",
                       "key": "after",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of results to return (default 100)",
                       "key": "limit",
                       "value": "100"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "4462e2e9-21f2-4916-bf93-e889ddd20037",
-              "name": "Forbidden - insufficient scope",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "since",
-                      "value": "<dateTime>"
-                    },
-                    {
-                      "key": "after",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "be9e8856-beb0-4821-ba84-a05c1e97ad66",
-          "name": "Get Application",
-          "request": {
-            "name": "Get Application",
-            "description": {
-              "content": "Returns details for a specific application by its ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apps",
-                "v1",
-                ":appId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "appId",
-                  "description": "(Required) Unique identifier for the application"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "oauth2",
-              "oauth2": [
-                {
-                  "key": "scope",
-                  "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
-                },
-                {
-                  "key": "accessTokenUrl",
-                  "value": "https://app.trelica.com/connect/token"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "603aa29e-6610-497d-95be-043b8e802294",
-              "name": "Application details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    "v1",
-                    ":appId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "appId",
-                      "description": "(Required) Unique identifier for the application"
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                "description": "Returns a paginated list of SaaS applications tracked in Trelica."
+              },
+              "response": [
+                {
+                  "id": "a6efeeb5-0ad1-4ed8-ac40-f2bfcae9d2ac",
+                  "name": "Successful response with list of applications",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/v1?q=<string>&since=<dateTime>&after=<string>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Free-text search across application name and description",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter applications modified after this date/time (ISO 8601)",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Pagination cursor for next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results to return (default 100)",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"string\",\n  \"status\": \"Inactive\",\n  \"vendorUrl\": \"https://bCXZjKMIZkwen.dibzp0sjaerzff-yuQy7hk+c2ljzmLfW1os2\",\n  \"userCount\": 2188,\n  \"annualCost\": 6199.588254979458,\n  \"lastModifiedDtm\": \"2004-10-20T20:58:36.044Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "18387bdd-85c4-4600-8042-94b54d651d41",
-              "name": "Application not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apps",
-                    "v1",
-                    ":appId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "appId",
-                      "description": "(Required) Unique identifier for the application"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
-                  ]
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"next\": \"<string>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"category\": \"<string>\",\n      \"status\": \"Inactive\",\n      \"vendorUrl\": \"<uri>\",\n      \"userCount\": \"<integer>\",\n      \"annualCost\": \"<number>\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"category\": \"<string>\",\n      \"status\": \"Inactive\",\n      \"vendorUrl\": \"<uri>\",\n      \"userCount\": \"<integer>\",\n      \"annualCost\": \"<number>\",\n      \"lastModifiedDtm\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:05:33.000Z",
+                  "updatedAt": "2026-10-22T01:05:33.000Z",
+                  "uid": "35240-a6efeeb5-0ad1-4ed8-ac40-f2bfcae9d2ac"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "9bac91b5-5b6b-4245-9ceb-28fa97deadc2",
+                  "name": "Unauthorized - missing or invalid OAuth token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/v1?q=<string>&since=<dateTime>&after=<string>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Free-text search across application name and description",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter applications modified after this date/time (ISO 8601)",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Pagination cursor for next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results to return (default 100)",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:05:33.000Z",
+                  "updatedAt": "2026-10-22T01:05:33.000Z",
+                  "uid": "35240-9bac91b5-5b6b-4245-9ceb-28fa97deadc2"
+                },
+                {
+                  "id": "0d78a31d-3c1f-4fa8-b43a-5bc83188c4af",
+                  "name": "Forbidden - insufficient scope",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/v1?q=<string>&since=<dateTime>&after=<string>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Free-text search across application name and description",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter applications modified after this date/time (ISO 8601)",
+                          "key": "since",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Pagination cursor for next page of results",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results to return (default 100)",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:05:33.000Z",
+                  "updatedAt": "2026-10-22T01:05:33.000Z",
+                  "uid": "35240-0d78a31d-3c1f-4fa8-b43a-5bc83188c4af"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:05:33.000Z",
+              "updatedAt": "2026-10-22T01:05:33.000Z",
+              "uid": "35240-bcb97550-e7f1-4f5b-a9b0-8018e771c5ca"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1794a763-358c-42f6-bcdd-e5163542adc4",
+          "createdAt": "2026-10-22T01:05:33.000Z",
+          "updatedAt": "2026-10-22T01:05:33.000Z",
+          "uid": "35240-1794a763-358c-42f6-bcdd-e5163542adc4"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://app.trelica.com/api",
-      "key": "baseUrl"
+      "id": "b8319ea0-edef-4d63-b00b-da5b548fd681",
+      "createdAt": "2026-10-22T01:05:33.000Z",
+      "updatedAt": "2026-10-22T01:05:33.000Z",
+      "uid": "35240-b8319ea0-edef-4d63-b00b-da5b548fd681"
     }
   ],
   "auth": {
@@ -440,25 +444,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read"
+        "value": "Apps.Read Apps.Users.Read People.Read People.Write Contracts.Read Workflows.Read Assets.Read AuditLog.Read Users.Read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://app.trelica.com/connect/token"
+        "value": "https://app.trelica.com/connect/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "cfe60ae6-d9bd-4b80-b6bc-2b69ce6fb35b",
-    "name": "Trelica REST Application Users Applications API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management via SCIM. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). Trelica is now part of 1Password SaaS Manager.\n\nContact Support:\n Name: Trelica Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.trelica.com/api"
     }
-  }
+  ]
 }
