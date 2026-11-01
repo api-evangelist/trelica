@@ -1,4 +1,4 @@
-# Trelica (trelica)
+# Trelica
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,76 +66,175 @@
 
 Trelica is a SaaS management platform (now part of 1Password SaaS Manager) providing application discovery, license optimization, contract management, and workflow automation for IT teams. The platform offers a REST API covering applications, users, people, contracts, workflows, assets, and audit logs with OAuth 2.0 authentication using Client Credentials and Authorization Code flows.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/trelica/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/trelica/refs/heads/main/apis.yml)
+**Areas:** Contract Management · IT Management · License Management · SaaS Management · Software Asset Management
 
-## Scope
+## Trelica on APIs.io
 
-- **Type:** Index
+Everything profiled for Trelica is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/trelica/](https://apis.io/providers/trelica/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Contract Management
-- IT Management
-- License Management
-- SaaS Management
-- Software Asset Management
+- [Trelica Application Users API](https://apis.io/apis/trelica/trelica-application-users-api/) — Manage users associated with specific applications
+- [Trelica Applications API](https://apis.io/apis/trelica/trelica-applications-api/) — Manage and query SaaS applications in the Trelica catalog
+- [Trelica Assets API](https://apis.io/apis/trelica/trelica-assets-api/) — Manage software and hardware assets
+- [Trelica Audit Log API](https://apis.io/apis/trelica/trelica-audit-log-api/) — Access audit trail of changes and events
+- [Trelica Contracts API](https://apis.io/apis/trelica/trelica-contracts-api/) — Manage software contracts and renewals
+- [Trelica People API](https://apis.io/apis/trelica/trelica-people-api/) — Manage people/employees within the organization
+- [Trelica Users (SCIM) API](https://apis.io/apis/trelica/trelica-users-scim-api/) — User provisioning via SCIM 2.0 protocol
+- [Trelica Workflows API](https://apis.io/apis/trelica/trelica-workflows-api/) — Manage automation workflows
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Trelica REST API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Trelica REST API provides programmatic access to the core areas of the Trelica SaaS management platform, including applications, people, contracts, workflows, assets, audit logs, and user management. The API uses OAuth 2.0 with either Client Credentials (for integrations) or Authorization Code flow (for third-party developer apps). The Users endpoint follows the SCIM protocol.
+- [Trelica Agentic Access](https://apis.io/agentic-access/trelica/trelica-agentic-access/)
 
-- **Human URL:** [https://trelica.gitbook.io/trelica-api](https://trelica.gitbook.io/trelica-api)
-- **Base URL:** `https://app.trelica.com/api`
+#### JSON Schema (3)
 
-#### Tags
+The data models the API reads and writes.
 
-- Application Discovery
-- Contract Management
-- IT Management
-- License Management
-- SaaS Management
-- Software Asset Management
+- [Trelica Application](https://apis.io/schemas/trelica/trelica-application/)
+- [Trelica Contract](https://apis.io/schemas/trelica/trelica-contract/)
+- [Trelica Person](https://apis.io/schemas/trelica/trelica-person/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://trelica.gitbook.io/trelica-api)
-- [Documentation](https://help.trelica.com/hc/en-us/sections/7739034184093-API)
-- [Authentication](https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API)
-- [OpenAPI](openapi/trelica-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trelica-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trelica-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub Organization](https://github.com/trelica)
-- [GitHub Repository](https://github.com/trelica/trelica-api-sdk)
-- [GitHub Repository](https://github.com/trelica/powershell)
-- [GitHub Repository](https://github.com/trelica/node)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Trelica Application Structure](https://apis.io/json-structure/trelica/trelica-application-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/trelica)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Trelica Context](https://apis.io/jsonld/trelica/trelica-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Trelica Vocabulary](https://apis.io/vocabularies/trelica/trelica-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Trelica List Applications Example](https://apis.io/examples/trelica/trelica-list-applications-example/)
+- [Trelica List People Example](https://apis.io/examples/trelica/trelica-list-people-example/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Trelica REST Application Users API](https://apis.io/collections/trelica/open-trelica-application-users-api/)
+- [Trelica REST Application Users Applications API](https://apis.io/collections/trelica/open-trelica-applications-api/)
+- [Trelica REST Application Users Assets API](https://apis.io/collections/trelica/open-trelica-assets-api/)
+- [Trelica REST Application Users Audit Log API](https://apis.io/collections/trelica/open-trelica-audit-log-api/)
+- [Trelica REST Application Users Contracts API](https://apis.io/collections/trelica/open-trelica-contracts-api/)
+- [Trelica REST Application Users People API](https://apis.io/collections/trelica/open-trelica-people-api/)
+- [Trelica REST API](https://apis.io/collections/trelica/open-trelica-rest-api/)
+- [Trelica REST Application Users Users (SCIM) API](https://apis.io/collections/trelica/open-trelica-users-scim-api/)
+- [Trelica REST Application Users Workflows API](https://apis.io/collections/trelica/open-trelica-workflows-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Trelica — jsonschema rules](https://apis.io/rules/trelica/trelica-jsonschema-spectral-rules/)
+- [Trelica API Rules](https://apis.io/rules/trelica/trelica-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Trelica Authentication](https://apis.io/security/trelica/trelica-authentication/)
+- [Trelica Domain Security](https://apis.io/security/trelica/trelica-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Trelica Scopes](https://apis.io/scopes/trelica/trelica-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Trelica Plans Pricing](https://apis.io/plans/trelica/trelica-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Trelica Rate Limits](https://apis.io/rate-limits/trelica/trelica-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Trelica Finops](https://apis.io/finops/trelica/trelica-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.trelica.com)
 - [Documentation](https://trelica.gitbook.io/trelica-api)
-- [Help Center](https://help.trelica.com/hc/en-us/sections/7739034184093-API)
-- [Authentication](https://help.trelica.com/hc/en-us/articles/7739283478941-Trelica-API)
-- [GitHub Organization](https://github.com/trelica)
-- [SDK](https://github.com/trelica/trelica-api-sdk)
-- [SDK](https://github.com/trelica/node)
-- [SDK](https://github.com/trelica/powershell)
-- [JSON Schema](json-schema/trelica-application-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/trelica-person-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/trelica-contract-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/trelica-application-structure.json)
-- [JSON-LD](json-ld/trelica-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/trelica-spectral-rules.yml)
-- [Vocabulary](vocabulary/trelica-vocabulary.yml)
+- [GitHub](https://github.com/trelica)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 32.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 58.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/trelica/](https://apis.io/providers/trelica/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Trelica: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/trelica/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
